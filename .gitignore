@@ -1,2 +1,10 @@
 /.DS_Store
 /.vscode
+libft/objects/*
+libft/libft.a
+rtv1.dSYM/Contents/Resources/DWARF/rtv1
+src/main_parse
+.gitignore
+obj/*
+rtv1.dSYM/Contents/Info.plist
+rtv1
