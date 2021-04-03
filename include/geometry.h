@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.h                                             :+:      :+:    :+:   */
+/*   geometry.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/14 17:08:48 by lseema            #+#    #+#             */
-/*   Updated: 2021/03/31 20:31:33 by lseema           ###   ########.fr       */
+/*   Created: 2021/03/14 18:24:41 by lseema            #+#    #+#             */
+/*   Updated: 2021/03/31 20:03:01 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef GEOMETRY_H
+# define GEOMETRY_H
+# include <math.h>
 
-# include "errno.h"
-#include "libft.h"
+typedef struct	s_vec3
+{
+	int			x;
+	int			y;
+	int			z;
+}				t_vec3;
 
-char	*read_all_text(int fd);
-int		is_file_format(char *file, char *format);
+t_vec3			vec3(int x, int y, int z);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 07:36:03 by lseema            #+#    #+#             */
-/*   Updated: 2021/03/28 19:51:16 by lseema           ###   ########.fr       */
+/*   Updated: 2021/03/29 20:37:23 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 # define ERR_EMPTY_FILE "Input file is empty"
 # define ERR_SCENE_PARSE "Error on parse input scene"
 # define ERR_TOP_LVL_OBJ_EXPECTED "Top level object expected on input json"
+# define ERR_JSON_UNEXPCTD_KEY "Unexpected key in json"
 
 #endif
