@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 13:17:58 by lseema            #+#    #+#              #
-#    Updated: 2021/03/27 20:43:57 by lseema           ###   ########.fr        #
+#    Updated: 2021/04/04 14:19:58 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,14 @@ DIR_OBJ		:= obj/
 DIR_LIBFT	:= libft/
 
 LIBFT		:= libft.a
-HEADERS		:= rtv1.h
+HEADERS		:= rtv1.h scene.h geometry.h token_actions.h
 
-SRCS		:= parser.c
+SRCS		:=	rtv1.c\
+				json_parser.c\
+				scene_manage.c\
+				token_manage.c\
+				vector.c\
+				cone.c
 OBJS		:= $(SRCS:.c=.o)
 
 PATH_LIBFT	:= $(addprefix $(DIR_LIBFT), $(LIBFT))

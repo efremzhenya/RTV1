@@ -6,36 +6,43 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 18:24:52 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/03 22:18:27 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/04 14:42:32 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCENE_H
 # define SCENE_H
 # include "geometry.h"
-# include "../external_libs/jsmn/jsmn.h"
-
+# define JSON_EXTENSION	".json"
+# define CONE			"cone"
+# define SPHERE			"sphere"
+# define PLANE			"plane"
+# define CYLINDER		"cylinder"
+# define CAMERA			"camera"
+# define SPOT			"spot"
 typedef enum			object_type
 {
-						SPHERE,
-						CYLINDER,
-						PLANE,
-						CONE,
-						CAMERA,
-						SPOT
+						OBJ_SPHERE,
+						OBJ_CYLINDER,
+						OBJ_PLANE,
+						OBJ_CONE,
+						OBJ_CAMERA,
+						OBJ_SPOT
 }						object_type;
 
 typedef struct			s_object
 {
 	int					id;
-	object_type			object;
+	object_type			type;
 	t_vec3				center;
 	void*				data;
+	struct s_object		*next;
+	struct s_object		*prev;
 }						t_object;
 
 typedef struct			s_scene
 {
-	t_object			**objects;
+	t_object			*objects;
 }						t_scene;
 
 typedef struct			s_sphere_data
@@ -70,15 +77,10 @@ struct					s_spot_data
 }						t_spota_data;
 
 
-void					parse_sphere();
-
-
 void					parse_json(char const *json, t_scene **scene);
-void					objects_parse_wrapper(char const *json, jsmntok_t **t, t_scene **scene);
-void					object_parse_switch(char const *json, jsmntok_t **t, t_scene **scene, int size);
-void					parse_cone(char const *json, jsmntok_t **t, t_scene **scene, int size);
-char					*get_token_value_str(const char *json, jsmntok_t tkn);
-long long				get_token_value_num(const char *json, jsmntok_t tkn);
-t_vec3					parse_coordiantes(char const *json, jsmntok_t **t);
+t_object				*new_object();
+void					add_object(t_object **objects, t_object *object);
+void					free_objects(t_object **objects);
+
 
 #endif
