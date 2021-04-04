@@ -8,30 +8,29 @@
 	  },
 	  {
 		"type": "sphere",
-		"coordinates": [0.1, 0.1, 0.1],
-		"radius": 0.1
+		"coordinates": [1, 2, 3],
+		"radius": 23
 	  },
 	  {
 		"type": "cylinder",
-		"coordinates": [0.1, 0.1, 0.1],
-		"radius": 0.1,
-		"height": 0.1
+		"coordinates": [5, -12, 32],
+		"radius": 43,
+		"height": 3
 	  },
 	  {
-		"type": "cube",
-		"coordinates": [0.1, 0.1, 0.1],
-		"width": 0.1
-	  },
-	  {
-		"type": "rectangular cuboid",
-		"coordinates": [0.1, 0.1, 0.1],
-		"width": 0.1,
-		"height": 0.1,
-		"length": 0.1
+		"type": "plane",
+		"coordinates": [1, 4, -5],
+		"width": 5,
+		"height": 8,
+		"length": 10
 	  },
 	  {
 		"type": "omnilight",
-		"coordinates": [0.1, 0.1, 0.1]
+		"coordinates": [5, -8, 10]
+	  },
+	  {
+		"type": "camera",
+		"coordinates": [5, -8, 10]
 	  }
 	]
 }

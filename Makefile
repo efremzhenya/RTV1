@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 13:17:58 by lseema            #+#    #+#              #
-#    Updated: 2021/04/04 14:19:58 by lseema           ###   ########.fr        #
+#    Updated: 2021/04/04 08:59:17 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,12 @@ SRCS		:=	rtv1.c\
 				scene_manage.c\
 				token_manage.c\
 				vector.c\
-				cone.c
+				cone.c\
+				cylinder.c\
+				plane.c\
+				sphere.c\
+				omnilight.c\
+				camera.c
 OBJS		:= $(SRCS:.c=.o)
 
 PATH_LIBFT	:= $(addprefix $(DIR_LIBFT), $(LIBFT))

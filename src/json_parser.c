@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:44:31 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/04 09:55:13 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/04 08:55:42 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,20 @@ int 	json_eq(const char *json, jsmntok_t token, const char *s)
 
 void	object_parse_switch(char const *json, jsmntok_t **tkn, t_scene **scene, int size)
 {
-	if (json_eq(json, **tkn, CONE))
-	{
-		++(*tkn);
+	if (json_eq(json, **tkn, CONE) && ++(*tkn))
 		parse_cone(json, tkn, scene, size);
-	}
+	else if (json_eq(json, **tkn, SPHERE) && ++(*tkn))
+		parse_sphere(json, tkn, scene, size);
+	else if (json_eq(json, **tkn, CYLINDER) && ++(*tkn))
+		parse_cylinder(json, tkn, scene, size);
+	else if (json_eq(json, **tkn, PLANE) && ++(*tkn))
+		parse_plane(json, tkn, scene, size);
+	else if (json_eq(json, **tkn, OMNILIGHT) && ++(*tkn))
+		parse_omnilight(json, tkn, scene, size);
+	else if (json_eq(json, **tkn, CAMERA) && ++(*tkn))
+		parse_camera(json, tkn, scene, size);
 	else
-	{
-		++(*tkn);
-	}
-	// else if (json_eq(json, *(t + 2), "sphere"))
-	// 	parse_sphere();
-	// else if (json_eq(json, *(t + 2), "camera"))
-	// 	parse_camera();
-	// else if (json_eq(json, *(t + 2), "cuboid"))
-	// 	parse_cuboid();
+		terminate("Unexpected object type");
 }
 
 void	objects_parse_wrapper(char const *json, jsmntok_t **tkn, t_scene **scene)

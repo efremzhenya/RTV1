@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 18:24:52 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/04 14:42:32 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/04 08:51:09 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define PLANE			"plane"
 # define CYLINDER		"cylinder"
 # define CAMERA			"camera"
-# define SPOT			"spot"
+# define OMNILIGHT		"omnilight"
 typedef enum			object_type
 {
 						OBJ_SPHERE,
@@ -27,7 +27,7 @@ typedef enum			object_type
 						OBJ_PLANE,
 						OBJ_CONE,
 						OBJ_CAMERA,
-						OBJ_SPOT
+						OBJ_OMNILIGHT
 }						object_type;
 
 typedef struct			s_object
@@ -60,6 +60,7 @@ typedef struct			s_plane_data
 {
 	int					width;
 	int					height;
+	int					length;
 }						t_plane_data;
 
 typedef struct			s_cone_data
@@ -72,9 +73,9 @@ typedef struct			s_camera_data
 {
 }						t_camera_data;
 
-struct					s_spot_data
+typedef struct			s_ominlight_data
 {
-}						t_spota_data;
+}						t_ominlight_data;
 
 
 void					parse_json(char const *json, t_scene **scene);
