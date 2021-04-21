@@ -8,3 +8,5 @@ src/main_parse
 obj/*
 rtv1.dSYM/Contents/Info.plist
 rtv1
+external_libs/jsmn/objects/jsmn.o
+external_libs/jsmn/jsmn.a

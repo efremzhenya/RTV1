@@ -6,13 +6,12 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:44:31 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/04 08:55:42 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/21 09:17:10 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "scene.h"
-#define JSMN_HEADER
 #include "token_actions.h"
 
 int		is_file_format(char *file, char *format)
@@ -91,6 +90,25 @@ void	objects_parse_wrapper(char const *json, jsmntok_t **tkn, t_scene **scene)
 	}
 }
 
+void	parse_screen(char const *json, jsmntok_t **tkn, t_scene **scene)
+{
+	int j;
+
+	if ((++(*tkn))->type != JSMN_OBJECT)
+		terminate("Expected array of objects");
+	j = ((*tkn)++)->size;
+	while (j--)
+	{
+		if (json_eq(json, **tkn, "height"))
+			(*scene)->height = token_to_num(json, *(++(*tkn)));
+		else if (json_eq(json, **tkn, "width"))
+			(*scene)->width = token_to_num(json, *(++(*tkn)));
+		else
+			terminate("Unexpected key");
+		(*tkn)++;
+	}
+}
+
 void	parse_json(char const *json, t_scene **scene)
 {
 	int 		count;
@@ -112,6 +130,8 @@ void	parse_json(char const *json, t_scene **scene)
 	{
 		if (json_eq(json, *tkn, "objects"))
 			objects_parse_wrapper(json, &tkn, scene);
+		else if (json_eq(json, *tkn, "resolution"))
+			parse_screen(json, &tkn, scene);
 		else
 			terminate(ERR_JSON_UNEXPCTD_KEY);
 	}

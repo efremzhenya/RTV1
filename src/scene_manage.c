@@ -5,61 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/04 08:00:32 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/04 14:28:25 by lseema           ###   ########.fr       */
+/*   Created: 2021/04/21 10:18:29 by lseema            #+#    #+#             */
+/*   Updated: 2021/04/21 10:24:41 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "scene.h"
 
-t_object	*new_object(void* data, object_type type)
+void	free_scene(t_scene **scene)
 {
-	t_object	*object;
-
-	if (!(object = (t_object*)malloc(sizeof(t_object))))
-		terminate("Allocate error");
-	object->data = data;
-	object->type = type;
-	object->next = NULL;
-	object->prev = NULL;
-	object->id = 0;
-	return (object);
+	free_objects(&(*scene)->objects);
+	free((*scene)->camera);
+	free((*scene)->light);
+	free(*scene);
+	*scene = NULL;
 }
 
-void	add_object(t_object **objects, t_object *object)
+t_scene	*init_scene()
 {
-	t_object *temp;
+	t_scene *scene;
 
-	if (*objects == NULL)
-		(*objects) = object;
-	else
-	{
-		temp = *objects;
-		while (temp->next != NULL)
-			temp = temp->next;
-		temp->next = object;
-		object->prev = temp;
-		object->id = temp->id + 1;
-	}
+	scene = (t_scene *)malloc(sizeof(t_scene));
+	scene->objects = NULL;
+	scene->camera = NULL;
+	scene->light = NULL;
+	return (scene);
 }
-
-void	free_objects(t_object **objects)
-{
-	t_object *temp;
-
-	if (objects == NULL || *objects == NULL)
-		return;
-	temp = *objects;
-	while (temp->next != NULL)
-	{
-		if (temp->data != NULL)
-			free(temp->data);
-		temp = temp->next;
-		free(temp->prev);
-	}
-	if (temp->data != NULL)
-		free(temp->data);
-	free(temp);
-}
-

@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/28 18:35:01 by lseema            #+#    #+#              #
-#    Updated: 2021/02/28 19:04:23 by lseema           ###   ########.fr        #
+#    Updated: 2021/04/05 20:23:57 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,10 @@ INSTALL_PATH=$(CURDIR)/
 all: $(NAME)
 
 $(NAME):
-	tar -xvf $(SDL_ARCHIVE)
-	mkdir -vp $(BUILD_DIR) && cd $(BUILD_DIR) && ../$(SDL_DIR)/configure --prefix=$(INSTALL_PATH)
-	make -C $(BUILD_DIR)
-	make -C $(BUILD_DIR) install
+	@tar -xvf $(SDL_ARCHIVE)
+	@mkdir -vp $(BUILD_DIR) && cd $(BUILD_DIR) && ../$(SDL_DIR)/configure --prefix=$(INSTALL_PATH)
+	@make -C $(BUILD_DIR)
+	@make -C $(BUILD_DIR) install
 
 clean:
 	@rm -rf $(CLEAN_DIRS)

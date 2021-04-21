@@ -3,34 +3,45 @@
 	  {
 		"type": "cone",
 		"coordinates": [1, 1, 1],
-		"height": 1,
-		"radius": 1
+		"height": 1.9,
+		"radius": 1,
+		"color": [10, 0, 255]
 	  },
 	  {
 		"type": "sphere",
 		"coordinates": [1, 2, 3],
-		"radius": 23
+		"radius": 23,
+		"color": [10, 0, 255]
 	  },
 	  {
 		"type": "cylinder",
 		"coordinates": [5, -12, 32],
 		"radius": 43,
-		"height": 3
+		"height": 3,
+		"color": [10, 0, 255]
 	  },
 	  {
 		"type": "plane",
-		"coordinates": [1, 4, -5],
+		"coordinates": [1, 4.5, -5],
 		"width": 5,
 		"height": 8,
-		"length": 10
+		"length": 10,
+		"color": [10, 0, 255]
 	  },
 	  {
 		"type": "omnilight",
-		"coordinates": [5, -8, 10]
+		"coordinates": [5, -8, 10],
+		"color": [10, 0, 255]
 	  },
 	  {
 		"type": "camera",
-		"coordinates": [5, -8, 10]
+		"coordinates": [5, -8, 10],
+		"orientation": [0.0, 0.0, 1.0],
+		"fov": 60
 	  }
-	]
+	],
+	"resolution": {
+		"height": 480,
+		"width": 620
+	}
 }

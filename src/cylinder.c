@@ -6,12 +6,11 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:50:58 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/04 08:06:42 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/21 10:12:49 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#define JSMN_HEADER
 #include "token_actions.h"
 
 void		parse_cylinder(char const *json, jsmntok_t **tkn, t_scene **scene,
@@ -30,10 +29,17 @@ void		parse_cylinder(char const *json, jsmntok_t **tkn, t_scene **scene,
 			++(*tkn);
 			object->center = token_to_vec3(json, tkn);
 		}
+		else if (json_eq(json, **tkn, "color"))
+		{
+			++(*tkn);
+			cylinder_data->color = token_to_color(json, tkn);
+		}
 		else if (json_eq(json, **tkn, "height"))
-			cylinder_data->height = token_to_num(json, *(++(*tkn)));
+			cylinder_data->height = token_to_double(json, *(++(*tkn)));
 		else if (json_eq(json, **tkn, "radius"))
-			cylinder_data->radius = token_to_num(json, *(++(*tkn)));
+			cylinder_data->radius = token_to_double(json, *(++(*tkn)));
+		else
+			terminate("Unexpected key in cylinder");
 		(*tkn)++;
 	}
 	add_object(&(*scene)->objects, object);
