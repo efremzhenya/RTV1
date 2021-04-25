@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 17:08:48 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/20 21:55:56 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/25 02:10:07 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,29 @@
 # define RTV1_H
 # include "errno.h"
 # include "libft.h"
+# include "scene.h"
+# include <SDL.h>
 
-char	*read_all_text(int fd);
-int		is_file_format(char *file, char *format);
-int		init_sdl(int width, int height);
+typedef struct s_sdl
+{
+	SDL_Window		*win;
+	SDL_Renderer	*ren;
+	SDL_Event		*event;
+}	t_sdl;
+
+typedef struct	s_view
+{
+	float	width;
+	float	height;
+	float	x;
+	float	y;
+}	t_view;
+
+char		*read_all_text(int fd);
+int			is_file_format(char *file, char *format);
+t_sdl		*init_sdl(int width, int height);
+void		main_loop(t_sdl *sdl, t_scene *scene);
+t_vec3		*ray_trace(t_scene *scene);
+t_view		*init_view(float width, float height, float fov);
 
 #endif

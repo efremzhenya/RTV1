@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:28:46 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/21 10:16:04 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/25 00:21:59 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	parse_camera(char const *json, jsmntok_t **tkn, t_scene **scene,
 		if (json_eq(json, **tkn, "coordinates"))
 		{
 			++(*tkn);
-			(*scene)->camera->center = token_to_vec3(json, tkn);
+			(*scene)->camera->origin = token_to_vec3(json, tkn);
 		}
-		else if (json_eq(json, **tkn, "orientation"))
+		else if (json_eq(json, **tkn, "direction"))
 		{
 			++(*tkn);
-			(*scene)->camera->orientation = token_to_vec3(json, tkn);
+			(*scene)->camera->direction = token_to_vec3(json, tkn);
 		}
 		else if (json_eq(json, **tkn, "fov"))
 			(*scene)->camera->fov = token_to_double(json, *(++(*tkn)));
@@ -37,13 +37,13 @@ void	parse_camera(char const *json, jsmntok_t **tkn, t_scene **scene,
 	}
 }
 
-t_camera *new_camera(t_vec3 center, t_vec3 orientation, float fov)
+t_camera *new_camera(t_vec3 center, t_vec3 direction, float fov)
 {
 	t_camera *camera;
 
 	camera = (t_camera*)malloc(sizeof(t_camera));
-	camera->center = center;
-	camera->orientation = orientation;
+	camera->origin = center;
+	camera->direction = direction;
 	camera->fov = fov;
 	return (camera);
 }

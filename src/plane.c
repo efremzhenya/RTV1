@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:53:33 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/21 10:13:04 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/25 01:03:16 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void		parse_plane(char const *json, jsmntok_t **tkn, t_scene **scene,
 		if (json_eq(json, **tkn, "coordinates"))
 		{
 			++(*tkn);
-			object->center = token_to_vec3(json, tkn);
+			object->origin = token_to_vec3(json, tkn);
 		}
 		else if (json_eq(json, **tkn, "color"))
 		{
 			++(*tkn);
-			plane_data->color = token_to_color(json, tkn);
+			object->color = token_to_color(json, tkn);
 		}
 		else if (json_eq(json, **tkn, "height"))
 			plane_data->height = token_to_double(json, *(++(*tkn)));

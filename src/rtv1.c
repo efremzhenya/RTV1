@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:07:57 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/21 10:24:28 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/24 20:37:58 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,26 @@
 #include "scene.h"
 #include "token_actions.h"
 
+void	terminate_sdl(t_sdl *sdl)
+{
+	if (sdl != NULL)
+	{
+		SDL_DestroyRenderer(sdl->ren);
+		sdl->ren = NULL;
+		SDL_DestroyWindow(sdl->win);
+		SDL_Quit();
+		free(sdl);
+		sdl = NULL;
+	}
+}
+
+
 int		main(int argc, char **argv)
 {
 	int			fd;
 	char		*json;
 	t_scene		*scene;
+	t_sdl		*sdl;
 
 	if (argc != 2)
 		terminate(ERR_OPEN);
@@ -31,6 +46,9 @@ int		main(int argc, char **argv)
 	scene = init_scene();
 	parse_json(json, &scene);
 	free(json);
-	init_sdl(scene->width, scene->height);
+	sdl = init_sdl(scene->width, scene->height);
+	main_loop(sdl, scene);
+	terminate_sdl(sdl);
 	free_scene(&scene);
 }
+

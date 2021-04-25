@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:16:06 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/21 10:12:42 by lseema           ###   ########.fr       */
+/*   Updated: 2021/04/25 00:22:24 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void		parse_cone(char const *json, jsmntok_t **tkn, t_scene **scene,
 		if (json_eq(json, **tkn, "coordinates"))
 		{
 			++(*tkn);
-			object->center = token_to_vec3(json, tkn);
+			object->origin = token_to_vec3(json, tkn);
 		}
 		else if (json_eq(json, **tkn, "color"))
 		{
 			++(*tkn);
-			cone_data->color = token_to_color(json, tkn);
+			object->color = token_to_color(json, tkn);
 		}
 		else if (json_eq(json, **tkn, "height"))
 			cone_data->height = token_to_double(json, *(++(*tkn)));
