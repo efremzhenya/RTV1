@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 13:17:58 by lseema            #+#    #+#              #
-#    Updated: 2021/05/08 18:10:10 by lseema           ###   ########.fr        #
+#    Updated: 2021/05/08 19:20:37 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ SRCS		:=	rtv1.c\
 				color.c
 OBJS		:= $(SRCS:.c=.o)
 
-DIR_SDL		:= /Users/lseema/Desktop/sdl_tests/external_libs/SDL/
+DIR_SDL		:= external_libs/SDL/
 MAKE_SDL	:= make -C $(DIR_SDL)
 
 PATH_LIBFT	:= $(addprefix $(DIR_LIBFT), $(LIBFT))
@@ -53,8 +53,8 @@ vpath %.c $(DIR_SRC)
 vpath %.h $(DIR_INC)
 vpath %.o $(DIR_OBJ)
 
-#all: libft_target sdl_target $(MAIN)
-all: libft_target $(MAIN)
+all: libft_target sdl_target $(MAIN)
+#all: libft_target $(MAIN)
 
 $(MAIN): $(OBJS)
 	$(CC) $(FLAGS) -lm `external_libs/SDL/bin/sdl2-config --cflags` $(addprefix $(DIR_OBJ), $(OBJS)) $(PATH_LIBFT) $(PATH_JSMN) -o $@ `external_libs/SDL/bin/sdl2-config --libs`

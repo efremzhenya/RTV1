@@ -10,3 +10,9 @@ rtv1.dSYM/Contents/Info.plist
 rtv1
 external_libs/jsmn/objects/jsmn.o
 external_libs/jsmn/jsmn.a
+external_libs/SDL/include/*
+external_libs/SDL/bin/*
+external_libs/SDL/lib/*
+external_libs/SDL/SDL2-2.0.14/*
+external_libs/SDL/sdl_lib/*
+external_libs/SDL/share/*
