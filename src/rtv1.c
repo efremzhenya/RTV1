@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:07:57 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/24 20:37:58 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/07 12:51:33 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	terminate_sdl(t_sdl *sdl)
 		sdl = NULL;
 	}
 }
-
 
 int		main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 18:42:12 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/25 17:48:08 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 01:15:10 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,24 @@ void    draw(t_sdl *sdl, t_vec3 *framebuff, int h, int w)
     SDL_RenderPresent(sdl->ren);
 }
 
-
 void    main_loop(t_sdl *sdl, t_scene *scene)
 {
     int         running;
     SDL_Event   event;
-    t_vec3      *framebuff;
+    t_vec3      *frame;
 
-    framebuff = NULL;
+    frame = NULL;
     if (scene != NULL)
-        framebuff = ray_trace(scene);
+        frame = get_frame(scene);
     running = 1;
-    draw(sdl, framebuff, scene->height, scene->width);
+    draw(sdl, frame, scene->height, scene->width);
     while (running)
     {
         while (SDL_PollEvent(&event))
         {
-            if (event.type == SDL_QUIT)
-            {
+            if (event.type == SDL_QUIT ||
+                (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
                 running = 0;
-            }
         }
         SDL_Delay(300);
     }

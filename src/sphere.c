@@ -6,22 +6,29 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:46:15 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/25 18:38:09 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 16:33:03 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "token_actions.h"
 
-void		parse_sphere(char const *json, jsmntok_t **tkn, t_scene **scene,
+t_vec3	get_normal_sphere(t_vec3 ray_dir, float closest_dist, struct s_object *obj, t_vec3 cam_origin)
+{
+	t_vec3 p;
+
+	p = vec3_plus(cam_origin, vec3_mult_value(ray_dir, closest_dist));
+	return (vec3_normalize(vec3_sub(p, obj->origin)));
+}
+
+void	parse_sphere(char const *json, jsmntok_t **tkn, t_scene **scene,
 	int size)
 {
 	t_object		*object;
 	t_sphere_data	*sphere_data;
 
 	sphere_data = (t_sphere_data *)malloc(sizeof(t_sphere_data));
-	object = new_object(sphere_data, OBJ_SPHERE);
-	object->data = sphere_data;
+	object = new_object(sphere_data, OBJ_SPHERE, intersect_sphere);
 	while (--size)
 	{
 		if (json_eq(json, **tkn, "coordinates"))
@@ -36,38 +43,35 @@ void		parse_sphere(char const *json, jsmntok_t **tkn, t_scene **scene,
 		}
 		else if (json_eq(json, **tkn, "radius"))
 			sphere_data->radius = token_to_double(json, *(++(*tkn)));
+		else if (json_eq(json, **tkn, "specular"))
+			object->specular =  token_to_double(json, *(++(*tkn)));
 		else
 			terminate("Unexpected key on sphere");
 		(*tkn)++;
 	}
-	object->intersect = intersect_sphere;
+	object->get_normal = get_normal_sphere;
 	add_object(&(*scene)->objects, object);
 }
 
-float		intersect_sphere(t_camera *cam, t_ray ray, t_object *sphere)
+float	intersect_sphere(t_vec3 cam_origin, t_vec3 ray_dir, t_object *sphere)
 {
-	float b;
-	float c;
-	float discrim;
-	float distance1;
-	float distance2;
-	t_vec3 cam_sphere;
+	t_vec3	cam_sphere;
 	t_sphere_data	*params;
+	t_quadric_eq	quadric;
 
 	params = sphere->data;
-	distance1 = 0;
-	distance2 = 0;
-	cam_sphere = vec3_sub(cam->origin, sphere->origin);
-	b = 2 * (vec3_dot_product(cam_sphere, ray.direction));
-	c = vec3_dot_product(cam_sphere, cam_sphere) - (params->radius * params->radius);
-	discrim = (b * b) - (4 * c);
-	if (discrim >= 0)
+	cam_sphere = vec3_sub(cam_origin, sphere->origin);
+	quadric.a = vec3_dot_product(ray_dir, ray_dir);
+	quadric.b = 2 * (vec3_dot_product(cam_sphere, ray_dir));
+	quadric.c = vec3_dot_product(cam_sphere, cam_sphere)
+		- pow(params->radius, 2);
+	quadric.discr = (quadric.b * quadric.b) - (4 * quadric.a * quadric.c);
+	if (quadric.discr >= 0)
 	{
-		b *= -1;
-		distance1 = (b - sqrt(discrim)) / 2.0;
-		distance2 = (b + sqrt(discrim)) / 2.0;
-		if (distance1 > 0)
-			return (distance1);
+		quadric.root1 = ((-quadric.b) - sqrt(quadric.discr)) / 2.0;
+		quadric.root2 = ((-quadric.b) + sqrt(quadric.discr)) / 2.0;
+		if (quadric.root1 > 0)
+			return (quadric.root1);
 	}
-	return (0);
+	return (INFINITY);
 }

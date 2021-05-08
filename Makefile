@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 13:17:58 by lseema            #+#    #+#              #
-#    Updated: 2021/04/25 01:44:52 by lseema           ###   ########.fr        #
+#    Updated: 2021/05/08 18:10:10 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS		:=	rtv1.c\
 				object_manage.c\
 				token_manage.c\
 				vector.c\
+				vector2.c\
 				cone.c\
 				cylinder.c\
 				plane.c\
@@ -35,7 +36,9 @@ SRCS		:=	rtv1.c\
 				omnilight.c\
 				camera.c\
 				init_sdl.c\
-				ray_trace.c
+				ray_trace.c\
+				light.c\
+				color.c
 OBJS		:= $(SRCS:.c=.o)
 
 DIR_SDL		:= /Users/lseema/Desktop/sdl_tests/external_libs/SDL/

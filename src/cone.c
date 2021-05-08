@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:16:06 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/25 00:22:24 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 16:33:38 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void		parse_cone(char const *json, jsmntok_t **tkn, t_scene **scene,
 	t_cone_data	*cone_data;
 
 	cone_data = (t_cone_data *)malloc(sizeof(t_cone_data));
-	object = new_object(cone_data, OBJ_CONE);
-	object->data = cone_data;
+	object = new_object(cone_data, OBJ_CONE, intersect_cone);
 	while (--size)
 	{
 		if (json_eq(json, **tkn, "coordinates"))
@@ -38,9 +37,20 @@ void		parse_cone(char const *json, jsmntok_t **tkn, t_scene **scene,
 			cone_data->height = token_to_double(json, *(++(*tkn)));
 		else if (json_eq(json, **tkn, "radius"))
 			cone_data->radius = token_to_double(json, *(++(*tkn)));
+		else if (json_eq(json, **tkn, "specular"))
+			object->specular =  token_to_double(json, *(++(*tkn)));
 		else
 			terminate("Unexpected key in cone");
 		(*tkn)++;
 	}
 	add_object(&(*scene)->objects, object);
+}
+
+float	intersect_cone(t_vec3 cam_origin, t_vec3 ray_dir, t_object *sphere)
+{
+	if (cam_origin.x && ray_dir.x && sphere)
+	{
+		//заглушка
+	}
+	return(INFINITY);
 }

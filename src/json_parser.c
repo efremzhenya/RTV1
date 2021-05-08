@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:44:31 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/21 09:17:10 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/07 23:21:05 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void	parse_json(char const *json, t_scene **scene)
 	int			size;
 
 	jsmn_init(&p);
-	tkn = NULL;
 	if ((count = jsmn_parse(&p, json, ft_strlen(json), NULL, 1000)) < 0)
 		terminate(ERR_SCENE_PARSE);
 	jsmn_init(&p);
