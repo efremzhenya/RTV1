@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 20:14:38 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 16:56:41 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 23:41:22 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ t_vec3	*get_frame(t_scene *scene)
 	y = 0;
 	while (y < scene->height)
 	{
-		ray.origin.y = ((scene->height / 2) - y) * view->y;
+		ray.origin.y = ((scene->height / 2.0) - y) * view->y;
 		x = 0;
 		while (x < scene->width)
 		{
-			frame[x + scene->width * y] = ray_trace(x, view->y, ray, scene);
+			ray.origin.x = ((scene->width / 2.0) * (-1) + x) * view->x;
+			ray.direction = vec3_normalize(ray.origin);
+			frame[x + scene->width * y] = ray_trace(ray, scene);
 			x++;
 		}
 		y++;
@@ -40,15 +42,13 @@ t_vec3	*get_frame(t_scene *scene)
 	return (frame);
 }
 
-t_vec3	ray_trace(int x, float view_y, t_ray ray, t_scene *scene)
+t_vec3	ray_trace(t_ray ray, t_scene *scene)
 {
 	t_object	*object;
 	float		distance;
 	float		min_distance;
 	t_object	*closest;
 
-	ray.origin.x = ((scene->width / 2) * (-1) + x) * view_y;
-	ray.direction = vec3_normalize(ray.origin);
 	object = scene->objects;
 	min_distance = INFINITY;
 	closest = NULL;
