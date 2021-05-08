@@ -1,12 +1,22 @@
 #include "jsmn.h"
 
+size_t	jsmn_strlen(const char *s)
+{
+	size_t count;
+
+	count = 0;
+	while (s[count] != '\0')
+		count++;
+	return (count);
+}
+
 /**
  * Allocates a fresh unused token from the token pool.
  */
 
-static jsmntok_t *jsmn_alloc_token(jsmn_parser *parser, jsmntok_t *tokens,
+static t_jsmntok *jsmn_alloc_token(t_jsmn_parser *parser, t_jsmntok *tokens,
                                    const size_t num_tokens) {
-  jsmntok_t *tok;
+  t_jsmntok *tok;
   if (parser->toknext >= num_tokens) {
     return NULL;
   }
@@ -22,7 +32,7 @@ static jsmntok_t *jsmn_alloc_token(jsmn_parser *parser, jsmntok_t *tokens,
 /**
  * Fills token type and boundaries.
  */
-static void jsmn_fill_token(jsmntok_t *token, const jsmntype_t type,
+static void jsmn_fill_token(t_jsmntok *token, const t_jsmntype type,
                             const int start, const int end) {
   token->type = type;
   token->start = start;
@@ -33,10 +43,10 @@ static void jsmn_fill_token(jsmntok_t *token, const jsmntype_t type,
 /**
  * Fills next available token with JSON primitive.
  */
-static int jsmn_parse_primitive(jsmn_parser *parser, const char *js,
-                                const size_t len, jsmntok_t *tokens,
+static int jsmn_parse_primitive(t_jsmn_parser *parser, const char *js,
+                                const size_t len, t_jsmntok *tokens,
                                 const size_t num_tokens) {
-  jsmntok_t *token;
+  t_jsmntok *token;
   int start;
 
   start = parser->pos;
@@ -91,10 +101,10 @@ found:
 /**
  * Fills next token with JSON string.
  */
-static int jsmn_parse_string(jsmn_parser *parser, const char *js,
-                             const size_t len, jsmntok_t *tokens,
+static int jsmn_parse_string(t_jsmn_parser *parser, const char *js,
+                             const size_t len, t_jsmntok *tokens,
                              const size_t num_tokens) {
-  jsmntok_t *token;
+  t_jsmntok *token;
 
   int start = parser->pos;
 
@@ -166,16 +176,17 @@ static int jsmn_parse_string(jsmn_parser *parser, const char *js,
 /**
  * Parse JSON string and fill tokens.
  */
-int jsmn_parse(jsmn_parser *parser, const char *js, const size_t len,
-                        jsmntok_t *tokens, const unsigned int num_tokens) {
+int jsmn_parse(t_jsmn_parser *parser, const char *js,
+                        t_jsmntok *tokens, const unsigned int num_tokens) {
   int r;
   int i;
-  jsmntok_t *token;
+  t_jsmntok *token;
   int count = parser->toknext;
+  const size_t len =  jsmn_strlen(js);
 
   for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
     char c;
-    jsmntype_t type;
+    t_jsmntype type;
 
     c = js[parser->pos];
     switch (c) {
@@ -190,7 +201,7 @@ int jsmn_parse(jsmn_parser *parser, const char *js, const size_t len,
         return JSMN_ERROR_NOMEM;
       }
       if (parser->toksuper != -1) {
-        jsmntok_t *t = &tokens[parser->toksuper];
+        t_jsmntok *t = &tokens[parser->toksuper];
 #ifdef JSMN_STRICT
         /* In strict mode an object or array can't become a key */
         if (t->type == JSMN_OBJECT) {
@@ -357,7 +368,7 @@ int jsmn_parse(jsmn_parser *parser, const char *js, const size_t len,
  * Creates a new parser based over a given buffer with an array of tokens
  * available.
  */
-void jsmn_init(jsmn_parser *parser) {
+void jsmn_init(t_jsmn_parser *parser) {
   parser->pos = 0;
   parser->toknext = 0;
   parser->toksuper = -1;

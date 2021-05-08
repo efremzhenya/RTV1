@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:50:58 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 16:34:35 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 20:01:36 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_vec3	get_normal_cylinder(t_vec3 ray_dir, float closest_dist,
 	return (vec3_normalize(vec3_sub(vecs[1], vecs[2])));
 }
 
-void		parse_cylinder(char const *json, jsmntok_t **tkn, t_scene **scene,
+void		parse_cylinder(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
 	t_object		*object;

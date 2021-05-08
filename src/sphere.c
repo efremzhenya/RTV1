@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:46:15 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 16:33:03 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 20:01:55 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_vec3	get_normal_sphere(t_vec3 ray_dir, float closest_dist, struct s_object *ob
 	return (vec3_normalize(vec3_sub(p, obj->origin)));
 }
 
-void	parse_sphere(char const *json, jsmntok_t **tkn, t_scene **scene,
+void	parse_sphere(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
 	t_object		*object;

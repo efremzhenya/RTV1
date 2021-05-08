@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:44:31 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/07 23:21:05 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 20:11:40 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ char	*read_all_text(int fd)
 	return (json);
 }
 
-int 	json_eq(const char *json, jsmntok_t token, const char *s)
+int 	json_eq(const char *json, t_jsmntok token, const char *s)
 {
 	return (token.type == JSMN_STRING &&
 		ft_strlen(s) == (size_t)token.end - token.start &&
 		!ft_strncmp(json + token.start, s, token.end - token.start));
 }
 
-void	object_parse_switch(char const *json, jsmntok_t **tkn, t_scene **scene, int size)
+void	object_parse_switch(char const *json, t_jsmntok **tkn, t_scene **scene, int size)
 {
 	if (json_eq(json, **tkn, CONE) && ++(*tkn))
 		parse_cone(json, tkn, scene, size);
@@ -68,7 +68,7 @@ void	object_parse_switch(char const *json, jsmntok_t **tkn, t_scene **scene, int
 		terminate("Unexpected object type");
 }
 
-void	objects_parse_wrapper(char const *json, jsmntok_t **tkn, t_scene **scene)
+void	objects_parse_wrapper(char const *json, t_jsmntok **tkn, t_scene **scene)
 {
 	int j;
 
@@ -90,7 +90,7 @@ void	objects_parse_wrapper(char const *json, jsmntok_t **tkn, t_scene **scene)
 	}
 }
 
-void	parse_screen(char const *json, jsmntok_t **tkn, t_scene **scene)
+void	parse_screen(char const *json, t_jsmntok **tkn, t_scene **scene)
 {
 	int j;
 
@@ -112,16 +112,16 @@ void	parse_screen(char const *json, jsmntok_t **tkn, t_scene **scene)
 void	parse_json(char const *json, t_scene **scene)
 {
 	int 		count;
-	jsmn_parser	p;
-	jsmntok_t	*tkn;
+	t_jsmn_parser	p;
+	t_jsmntok	*tkn;
 	int			size;
 
 	jsmn_init(&p);
-	if ((count = jsmn_parse(&p, json, ft_strlen(json), NULL, 1000)) < 0)
+	if ((count = jsmn_parse(&p, json, NULL, 1000)) < 0)
 		terminate(ERR_SCENE_PARSE);
 	jsmn_init(&p);
-	tkn = (jsmntok_t *)malloc(sizeof(jsmntok_t) * count);
-	count = jsmn_parse(&p, json, ft_strlen(json), tkn, count);
+	tkn = (t_jsmntok *)malloc(sizeof(t_jsmntok) * count);
+	count = jsmn_parse(&p, json, tkn, count);
 	if (count == 0 || tkn[0].type != JSMN_OBJECT)
 		terminate(ERR_TOP_LVL_OBJ_EXPECTED);
 	size = tkn++->size;

@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:53:33 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 16:35:01 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 20:01:12 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_vec3	get_normal_plane(t_vec3 ray_dir, float closest_dist, struct s_object *obj
 	return (vec3_normalize(data->normal));
 }
 
-void		parse_plane(char const *json, jsmntok_t **tkn, t_scene **scene,
+void		parse_plane(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
 	t_object		*object;

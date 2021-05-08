@@ -6,14 +6,14 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:28:46 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/25 00:21:59 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 20:01:29 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "token_actions.h"
 
-void	parse_camera(char const *json, jsmntok_t **tkn, t_scene **scene,
+void	parse_camera(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
 	(*scene)->camera = (t_camera*)malloc(sizeof(t_camera));

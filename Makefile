@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 13:17:58 by lseema            #+#    #+#              #
-#    Updated: 2021/05/08 19:20:37 by lseema           ###   ########.fr        #
+#    Updated: 2021/05/08 20:00:48 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,8 +53,8 @@ vpath %.c $(DIR_SRC)
 vpath %.h $(DIR_INC)
 vpath %.o $(DIR_OBJ)
 
-all: libft_target sdl_target $(MAIN)
-#all: libft_target $(MAIN)
+#all: libft_target sdl_target $(MAIN)
+all: libft_target $(MAIN)
 
 $(MAIN): $(OBJS)
 	$(CC) $(FLAGS) -lm `external_libs/SDL/bin/sdl2-config --cflags` $(addprefix $(DIR_OBJ), $(OBJS)) $(PATH_LIBFT) $(PATH_JSMN) -o $@ `external_libs/SDL/bin/sdl2-config --libs`

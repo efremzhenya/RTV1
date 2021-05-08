@@ -6,14 +6,14 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:16:06 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 16:33:38 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/08 20:00:54 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "token_actions.h"
 
-void		parse_cone(char const *json, jsmntok_t **tkn, t_scene **scene,
+void		parse_cone(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
 	t_object	*object;
