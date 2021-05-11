@@ -19,15 +19,15 @@ enum e_jsmnerr {
 
 typedef struct s_jsmntok {
 	t_jsmntype	type;
-	int	start;
-	int					end;
-	int					size;
-}	t_jsmntok;
+	int			start;
+	int			end;
+	int			size;
+}				t_jsmntok;
 typedef struct s_jsmn_parser {
 	unsigned int	pos;
 	unsigned int	toknext;
-	int	toksuper;
-}	t_jsmn_parser;
+	int				toksuper;
+}					t_jsmn_parser;
 
 void	jsmn_init(t_jsmn_parser *parser);
 int		jsmn_parse(t_jsmn_parser *parser, const char *js,
