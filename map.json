@@ -1,138 +1,49 @@
 {
 	"objects": [
 	  {
+		"type": "sphere",
+		"coordinates": [7, 1, -33],
+		"radius": 4,
+		"color": [78, 52, 208],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [5, 4, -33],
+		"radius": 5,
+		"color": [78, 12, 88],
+		"specular" : 10
+	  },
+	  {
 		"type": "omnilight",
-		"coordinates": [0, 0, 0],
+		"coordinates": [-4, 10, -4],
 		"color": [10, 0, 255],
 		"brightness": 1
 	  },
 	  {
-		"type": "sphere",
-		"coordinates": [-120, 100, -200],
-		"radius": 20,
-		"color": [78, 92, 88],
-		"specular" : 10
-	  },
-	  {
-		"type": "sphere",
-		"coordinates": [120, 100, -200],
-		"radius": 20,
-		"color": [78, 92, 88],
-		"specular" : 10
-	  },
-	  {
 		"type": "plane",
-		"coordinates": [0, 100, 0],
-		"normal": [0.0, -1, 0.0],
-		"color": [255, 255, 0],
-		"specular" : 10
-	  },
-	  {
-		"type": "sphere",
-		"coordinates": [120, -100, -200],
-		"radius": 20,
-		"color": [78, 92, 88],
-		"specular" : 10
-	  },
-	  {
-		"type": "sphere",
-		"coordinates": [-120, -100, -200],
-		"radius": 20,
-		"color": [78, 92, 88],
-		"specular" : 10
-	  },
-	  {
-		"type": "plane",
-		"coordinates": [0, -100, 0],
-		"normal": [0.0, 1, 0.0],
+		"coordinates": [0, -20, -15],
+		"normal": [0.4, 0.6, 0.0],
 		"color": [255, 255, 0],
 		"specular" : 10
 	  },
 	  {
 		"type": "cylinder",
-		"coordinates": [-120, 0, -200],
-		"normal": [0, 1, 0],
-		"radius": 10,
+		"coordinates": [4, 0, -32],
+		"normal": [0.8, 0.3, 0],
+		"radius": 2,
 		"color": [100, 255, 255],
 		"specular" : 10
-	  },
-	  {
-		"type": "cylinder",
-		"coordinates": [120, 0, -200],
-		"normal": [0, 1, 0],
-		"radius": 10,
-		"color": [100, 255, 255],
-		"specular" : 10
-	  },
-
-	  {
-		"type": "sphere",
-		"coordinates": [-120, 100, -400],
-		"radius": 20,
-		"color": [78, 92, 88],
-		"specular" : 10
-	  },
-	  {
-		"type": "sphere",
-		"coordinates": [120, 100, -400],
-		"radius": 20,
-		"color": [78, 92, 88],
-		"specular" : 10
-	  },
-	  {
-		"type": "sphere",
-		"coordinates": [120, -100, -400],
-		"radius": 20,
-		"color": [78, 92, 88],
-		"specular" : 10
-	  },
-	  {
-		"type": "sphere",
-		"coordinates": [-120, -100, -400],
-		"radius": 20,
-		"color": [78, 92, 88],
-		"specular" : 10
-	  },
-	  {
-		"type": "cylinder",
-		"coordinates": [-120, 0, -400],
-		"normal": [0, 1, 0],
-		"radius": 10,
-		"color": [100, 255, 255],
-		"specular" : 10
-	  },
-	  {
-		"type": "cylinder",
-		"coordinates": [120, 0, -400],
-		"normal": [0, 1, 0],
-		"radius": 10,
-		"color": [100, 255, 255],
-		"specular" : 10
-	  },
-
-	  {
-		"type": "plane",
-		"coordinates": [0, 0, -800],
-		"normal": [0.0, 0, 1.0],
-		"color": [255, 0, 255],
-		"specular" : 10
-	  },
-	  {
-		"type": "sphere",
-		"coordinates": [0, -70, -200],
-		"radius": 15,
-		"color": [255, 0, 0],
-		"specular" : 5
 	  },
 	  {
 		"type": "camera",
-		"coordinates": [0, -2, 100],
+		"coordinates": [0, 0, 20],
 		"direction": [0.0, 0.0, -1.0],
-		"fov": 75
+		"fov": 60
 	  }
 	],
 	"resolution": {
-		"height": 1440,
+		"height": 1800,
 		"width": 2560
 	}
 }

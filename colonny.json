@@ -1,0 +1,138 @@
+{
+	"objects": [
+	  {
+		"type": "omnilight",
+		"coordinates": [23, 0, 0],
+		"color": [10, 0, 255],
+		"brightness": 1
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [-120, 100, -200],
+		"radius": 20,
+		"color": [78, 92, 88],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [120, 100, -200],
+		"radius": 20,
+		"color": [78, 92, 88],
+		"specular" : 10
+	  },
+	  {
+		"type": "plane",
+		"coordinates": [0, 100, 0],
+		"normal": [0.0, -1, 0.0],
+		"color": [255, 255, 0],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [120, -100, -200],
+		"radius": 20,
+		"color": [78, 92, 88],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [-120, -100, -200],
+		"radius": 20,
+		"color": [78, 92, 88],
+		"specular" : 10
+	  },
+	  {
+		"type": "plane",
+		"coordinates": [0, -100, 0],
+		"normal": [0.0, 1, 0.0],
+		"color": [255, 255, 0],
+		"specular" : 10
+	  },
+	  {
+		"type": "cylinder",
+		"coordinates": [-120, 0, -200],
+		"normal": [0, 1, 0],
+		"radius": 10,
+		"color": [100, 255, 255],
+		"specular" : 10
+	  },
+	  {
+		"type": "cylinder",
+		"coordinates": [120, 0, -200],
+		"normal": [0, 1, 0],
+		"radius": 10,
+		"color": [100, 255, 255],
+		"specular" : 10
+	  },
+
+	  {
+		"type": "sphere",
+		"coordinates": [-120, 100, -400],
+		"radius": 20,
+		"color": [78, 92, 88],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [120, 100, -400],
+		"radius": 20,
+		"color": [78, 92, 88],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [120, -100, -400],
+		"radius": 20,
+		"color": [78, 92, 88],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [-120, -100, -400],
+		"radius": 20,
+		"color": [78, 92, 88],
+		"specular" : 10
+	  },
+	  {
+		"type": "cylinder",
+		"coordinates": [-120, 0, -400],
+		"normal": [0, 1, 0],
+		"radius": 10,
+		"color": [100, 255, 255],
+		"specular" : 10
+	  },
+	  {
+		"type": "cylinder",
+		"coordinates": [120, 0, -400],
+		"normal": [0, 1, 0],
+		"radius": 10,
+		"color": [100, 255, 255],
+		"specular" : 10
+	  },
+
+	  {
+		"type": "plane",
+		"coordinates": [0, 0, -800],
+		"normal": [0.0, 0, 1.0],
+		"color": [255, 0, 255],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [0, -70, -200],
+		"radius": 15,
+		"color": [255, 0, 0],
+		"specular" : 5
+	  },
+	  {
+		"type": "camera",
+		"coordinates": [0, 0, -2],
+		"direction": [0, 0, -20],
+		"fov": 75
+	  }
+	],
+	"resolution": {
+		"height": 1440,
+		"width": 2560
+	}
+}
