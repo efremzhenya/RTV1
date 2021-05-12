@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 20:14:38 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 23:41:22 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/12 22:10:07 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_vec3	*get_frame(t_scene *scene)
 	frame = (t_vec3 *)malloc(sizeof(t_vec3) * scene->height * scene->width);
 	if (!frame)
 		terminate(ERR_MALLOC);
+	transform_scene(scene);
 	view = init_view(scene->width, scene->height, scene->camera->fov);
 	ray.origin.z = -1;
 	y = 0;
@@ -81,4 +82,36 @@ t_view	*init_view(float width, float height, float fov)
 	view->x = view->width / width;
 	view->y = view->height / height;
 	return (view);
+}
+
+void transform_scene(t_scene *scene)
+{
+	t_object *obj;
+	t_cylinder_data *cyl_data;
+	t_plane_data *plane_data;
+
+	obj = scene->objects;
+	scene->camera->rotation = rotation_matrix(scene->camera->origin, scene->camera->direction);
+	scene->camera->transform = translation_matrix(scene->camera->origin);
+	scene->camera->look_at = mat44f_mult(scene->camera->transform, scene->camera->rotation);
+	while (obj)
+	{
+		if (obj->type == OBJ_SPHERE)
+			obj->origin = mat44f_mult_vec3f(obj->origin, scene->camera->look_at);
+		else if (obj->type == OBJ_PLANE)
+		{
+			plane_data = obj->data;
+			obj->origin = mat44f_mult_vec3f(obj->origin, scene->camera->look_at);
+			plane_data->normal = mat44f_mult_vec3f(plane_data->normal, scene->camera->rotation);
+		}
+		else if (obj->type == OBJ_CYLINDER)
+		{
+			cyl_data = obj->data;
+			obj->origin = mat44f_mult_vec3f(obj->origin, scene->camera->look_at);
+			cyl_data->normal = mat44f_mult_vec3f(cyl_data->normal, scene->camera->rotation);
+		}
+		obj = obj->next;
+	}
+	scene->light->center = mat44f_mult_vec3f(scene->light->center, scene->camera->look_at);
+	scene->camera->origin = mat44f_mult_vec3f(scene->camera->origin, scene->camera->look_at);
 }

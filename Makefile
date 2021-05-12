@@ -6,7 +6,7 @@
 #    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 13:17:58 by lseema            #+#    #+#              #
-#    Updated: 2021/05/08 20:00:48 by lseema           ###   ########.fr        #
+#    Updated: 2021/05/12 02:18:57 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS		:=	rtv1.c\
 				token_manage.c\
 				vector.c\
 				vector2.c\
+				matrix.c\
 				cone.c\
 				cylinder.c\
 				plane.c\

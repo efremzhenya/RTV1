@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:28:46 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 20:01:29 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/12 22:14:16 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_camera(char const *json, t_jsmntok **tkn, t_scene **scene,
 			++(*tkn);
 			(*scene)->camera->origin = token_to_vec3(json, tkn);
 		}
-		else if (json_eq(json, **tkn, "direction"))
+		else if (json_eq(json, **tkn, "lookat"))
 		{
 			++(*tkn);
 			(*scene)->camera->direction = token_to_vec3(json, tkn);

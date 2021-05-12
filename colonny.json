@@ -2,7 +2,7 @@
 	"objects": [
 	  {
 		"type": "omnilight",
-		"coordinates": [23, 0, 0],
+		"coordinates": [0, 0, 0],
 		"color": [10, 0, 255],
 		"brightness": 1
 	  },
@@ -126,8 +126,8 @@
 	  },
 	  {
 		"type": "camera",
-		"coordinates": [0, 0, -2],
-		"direction": [0, 0, -20],
+		"coordinates": [-500, 0, 300],
+		"lookat": [0, 60, 0],
 		"fov": 75
 	  }
 	],
