@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 18:24:52 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 16:32:55 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/13 23:36:22 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ typedef struct			s_plane_data
 
 typedef struct			s_cone_data
 {
-	float				radius;
-	float				height;
+	float				angle;
 	t_vec3				normal;
 }						t_cone_data;
 
@@ -101,7 +100,7 @@ t_scene					*init_scene();
 void					free_scene(t_scene **scene);
 void					parse_json(char const *json, t_scene **scene);
 t_object				*new_object(void* data, object_type type,
-	float (*intersect)(t_vec3 cam_origin, t_vec3 ray_dir, struct s_object *));
+float (*intersect)(t_vec3 cam_origin, t_vec3 ray_dir, struct s_object *));
 void					add_object(t_object **objects, t_object *object);
 void					free_objects(t_object **objects);
 float					intersect_sphere(t_vec3 cam_origin, t_vec3 ray_dir, t_object *sphere);
@@ -111,5 +110,6 @@ float					intersect_cone(t_vec3 cam_origin, t_vec3 ray_dir, t_object *sphere);
 float					compute_lightning(t_vec3 P, t_vec3 N, t_vec3 V, float s, t_omnilight *light);
 t_vec3					get_color(float closest_dist, t_object *object, t_ray ray, t_scene *scene);
 t_vec3					get_normal_sphere(t_vec3 ray_dir, float closest_dist, struct s_object *obj, t_vec3 cam_origin);
+t_vec3					get_normal_cone(t_vec3 ray_dir, float closest_dist,struct s_object *obj, t_vec3 cam_origin);
 
 #endif

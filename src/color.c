@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 04:48:03 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 18:03:14 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/13 23:38:28 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,15 @@ t_vec3	get_color(float closest_dist, t_object *object, t_ray ray, t_scene *scene
 	t_vec3 n;
 	t_vec3 p;
 	t_vec3 lighted_color;
+	
 	if (object == NULL)
 		return vec3(0, 0, 0);
-	if (object->type != OBJ_CONE)
-	{
-		p = vec3_plus(scene->camera->origin, vec3_mult_value(ray.direction, closest_dist));
-		n = object->get_normal(ray.direction, closest_dist, object, scene->camera->origin);
-		lighted_color = correct_color((vec3_mult_value(object->color, compute_lightning(p, n, vec3_mult_value(ray.direction, -1.0), object->specular, scene->light))));
-		if (is_shadowed(scene, object, p))
-			lighted_color = correct_color(vec3_mult_value(lighted_color, 0.9));
-		return (lighted_color);
-	}
-	else
-		return (object->color);
+	p = vec3_plus(scene->camera->origin, vec3_mult_value(ray.direction, closest_dist));
+	n = object->get_normal(ray.direction, closest_dist, object, scene->camera->origin);
+	lighted_color = correct_color((vec3_mult_value(object->color, compute_lightning(p, n, vec3_mult_value(ray.direction, -1.0), object->specular, scene->light))));
+	if (is_shadowed(scene, object, p))
+		lighted_color = correct_color(vec3_mult_value(lighted_color, 0.9));
+	return (lighted_color);
 }
 
 
