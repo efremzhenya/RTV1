@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_trace.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 20:14:38 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/12 22:10:07 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/14 23:37:43 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void transform_scene(t_scene *scene)
 {
 	t_object *obj;
 	t_cylinder_data *cyl_data;
+	t_cone_data	*cone_data;
 	t_plane_data *plane_data;
 
 	obj = scene->objects;
@@ -109,6 +110,12 @@ void transform_scene(t_scene *scene)
 			cyl_data = obj->data;
 			obj->origin = mat44f_mult_vec3f(obj->origin, scene->camera->look_at);
 			cyl_data->normal = mat44f_mult_vec3f(cyl_data->normal, scene->camera->rotation);
+		}
+		else if (obj->type == OBJ_CONE)
+		{
+			cone_data = obj->data;
+			obj->origin = mat44f_mult_vec3f(obj->origin, scene->camera->look_at);
+			cone_data->normal = mat44f_mult_vec3f(cone_data->normal, scene->camera->rotation);
 		}
 		obj = obj->next;
 	}
