@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 18:24:41 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 05:36:05 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/12 22:11:50 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,25 @@
 # define GEOMETRY_H
 # include <math.h>
 
-typedef struct	s_vec3
+typedef struct s_vec3
 {
 	float		x;
 	float		y;
 	float		z;
 }				t_vec3;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	t_vec3		origin;
 	t_vec3		direction;
 }				t_ray;
 
-typedef struct	s_quadric_eq
+typedef struct s_mat44f
+{
+	float		data[4][4];
+}				t_mat44f;
+
+typedef struct s_quadric_eq
 {
 	float		a;
 	float		b;
@@ -46,5 +51,11 @@ float			vec3_dot_product(t_vec3 vec1, t_vec3 vec2);
 t_vec3			vec3_cross_product(t_vec3 vec1, t_vec3 vec2);
 t_vec3			vec3_mult_value(t_vec3 vec, float value);
 t_vec3			vec3_devide_value(t_vec3 vec, float value);
+t_vec3			mat44f_mult_vec3f(t_vec3 vec, t_mat44f mat);
+t_vec3			up_direction(t_vec3 forward);
+t_mat44f		new_matrix44f();
+t_mat44f		rotation_matrix(const t_vec3 from, const t_vec3 to);
+t_mat44f		translation_matrix(const t_vec3 from);
+t_mat44f		mat44f_mult(t_mat44f right_matrix, t_mat44f left_matrix);
 
 #endif

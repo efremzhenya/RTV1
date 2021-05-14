@@ -2,9 +2,9 @@
 	"objects": [
 	  {
 		"type": "sphere",
-		"coordinates": [2, 25, -50],
-		"radius": 8,
-		"color": [78, 92, 88],
+		"coordinates": [0.1, 0.1, 0.1],
+		"radius": 4,
+		"color": [78, 12, 88],
 		"specular" : 10
 	  },
 	  {
@@ -44,9 +44,9 @@
 	  },
 	  {
 		"type": "camera",
-		"coordinates": [0, 0, 50],
+		"lookat": [0, 0, 100],
 		"direction": [0.0, 0.0, -1.0],
-		"fov": 75
+		"fov": 60
 	  }
 	],
 	"resolution": {

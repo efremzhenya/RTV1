@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 18:24:52 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/13 23:36:22 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/14 23:03:18 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct			s_camera
 	t_vec3				origin;
 	t_vec3				direction;
 	float				fov;
+	t_mat44f			rotation;
+	t_mat44f			transform;
+	t_mat44f			look_at;
 }						t_camera;
 typedef struct			s_object
 {
@@ -89,13 +92,6 @@ typedef struct			s_cone_data
 	t_vec3				normal;
 }						t_cone_data;
 
-typedef struct			s_hit
-{
-	float				distance;
-	t_object			*object;
-}						t_hit;
-
-
 t_scene					*init_scene();
 void					free_scene(t_scene **scene);
 void					parse_json(char const *json, t_scene **scene);
@@ -111,5 +107,6 @@ float					compute_lightning(t_vec3 P, t_vec3 N, t_vec3 V, float s, t_omnilight *
 t_vec3					get_color(float closest_dist, t_object *object, t_ray ray, t_scene *scene);
 t_vec3					get_normal_sphere(t_vec3 ray_dir, float closest_dist, struct s_object *obj, t_vec3 cam_origin);
 t_vec3					get_normal_cone(t_vec3 ray_dir, float closest_dist,struct s_object *obj, t_vec3 cam_origin);
+void					transform_scene(t_scene *scene);
 
 #endif
