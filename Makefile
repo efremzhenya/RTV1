@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
+#    By: mellie <mellie@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 13:17:58 by lseema            #+#    #+#              #
-#    Updated: 2021/05/12 02:18:57 by lseema           ###   ########.fr        #
+#    Updated: 2021/05/16 18:35:38 by mellie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ HEADERS		:= rtv1.h scene.h geometry.h token_actions.h jsmn.h
 
 SRCS		:=	rtv1.c\
 				json_parser.c\
+				json_parser2.c\
 				scene_manage.c\
 				object_manage.c\
 				token_manage.c\

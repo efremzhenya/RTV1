@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:53:33 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 20:01:12 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 18:23:26 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-#define JSMN_HEADER
 #include "token_actions.h"
+#define JSMN_HEADER
 
-t_vec3	get_normal_plane(t_vec3 ray_dir, float closest_dist, struct s_object *obj, t_vec3 cam_origin)
+t_vec3	get_normal_plane(t_vec3 ray_dir, float closest_dist,
+	struct s_object *obj, t_vec3 cam_origin)
 {
-	t_plane_data *data;
+	t_plane_data	*data;
 
 	ray_dir.x = ray_dir.x;
 	closest_dist = closest_dist + 1;
@@ -25,7 +26,7 @@ t_vec3	get_normal_plane(t_vec3 ray_dir, float closest_dist, struct s_object *obj
 	return (vec3_normalize(data->normal));
 }
 
-void		parse_plane(char const *json, t_jsmntok **tkn, t_scene **scene,
+void	parse_plane(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
 	t_object		*object;
@@ -52,7 +53,7 @@ void		parse_plane(char const *json, t_jsmntok **tkn, t_scene **scene,
 			object->color = token_to_color(json, tkn);
 		}
 		else if (json_eq(json, **tkn, "specular"))
-			object->specular =  token_to_double(json, *(++(*tkn)));
+			object->specular = token_to_double(json, *(++(*tkn)));
 		else
 			terminate("Unexpected key on plane");
 		(*tkn)++;
@@ -62,15 +63,15 @@ void		parse_plane(char const *json, t_jsmntok **tkn, t_scene **scene,
 
 float	intersect_plane(t_vec3 cam_origin, t_vec3 ray_dir, t_object *plane)
 {
-	float distance;
-	float denom;
-	float projection;
-	t_plane_data *data;
+	float			distance;
+	float			denom;
+	float			projection;
+	t_plane_data	*data;
 
 	data = plane->data;
-	denom = vec3_dot_product(data->normal, ray_dir);
-	projection = vec3_dot_product(cam_origin, data->normal)
-		- vec3_dot_product(data->normal, plane->origin);
+	denom = vec3_dot(data->normal, ray_dir);
+	projection = vec3_dot(cam_origin, data->normal)
+		- vec3_dot(data->normal, plane->origin);
 	if (denom < 0.0001 && denom > -0.0001)
 		return (0);
 	distance = projection / denom * -1;

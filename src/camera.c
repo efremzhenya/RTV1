@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:28:46 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/12 22:14:16 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:02:00 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	parse_camera(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
-	(*scene)->camera = (t_camera*)malloc(sizeof(t_camera));
+	(*scene)->camera = (t_camera *)malloc(sizeof(t_camera));
 	while (--size)
 	{
 		if (json_eq(json, **tkn, "coordinates"))
@@ -37,11 +37,11 @@ void	parse_camera(char const *json, t_jsmntok **tkn, t_scene **scene,
 	}
 }
 
-t_camera *new_camera(t_vec3 center, t_vec3 direction, float fov)
+t_camera	*new_camera(t_vec3 center, t_vec3 direction, float fov)
 {
-	t_camera *camera;
+	t_camera	*camera;
 
-	camera = (t_camera*)malloc(sizeof(t_camera));
+	camera = (t_camera *)malloc(sizeof(t_camera));
 	camera->origin = center;
 	camera->direction = direction;
 	camera->fov = fov;

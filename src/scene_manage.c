@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 10:18:29 by lseema            #+#    #+#             */
-/*   Updated: 2021/04/21 10:24:41 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 17:45:24 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	free_scene(t_scene **scene)
 	*scene = NULL;
 }
 
-t_scene	*init_scene()
+t_scene	*init_scene(void)
 {
-	t_scene *scene;
+	t_scene	*scene;
 
 	scene = (t_scene *)malloc(sizeof(t_scene));
 	scene->objects = NULL;

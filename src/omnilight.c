@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   omnilight.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:07:18 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 20:01:45 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 17:42:24 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "token_actions.h"
 
-void		parse_omnilight(char const *json, t_jsmntok **tkn, t_scene **scene,
+void	parse_omnilight(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
 	(*scene)->light = (t_omnilight *)malloc(sizeof(t_omnilight));

@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   object_manage.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:00:32 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 16:49:15 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 17:55:40 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "scene.h"
 
-t_object	*new_object(void* data, object_type type,
+t_object	*new_object(void *data, t_object_type type,
 	float (*intersect)(t_vec3 cam_orig, t_vec3 ray_dir, struct s_object *))
 {
 	t_object	*object;
 
-	if (!(object = (t_object*)malloc(sizeof(t_object))))
+	object = (t_object *)malloc(sizeof(t_object));
+	if (!(object))
 		terminate("Allocate error");
 	object->data = data;
 	object->type = type;
@@ -31,7 +32,7 @@ t_object	*new_object(void* data, object_type type,
 
 void	add_object(t_object **objects, t_object *object)
 {
-	t_object *temp;
+	t_object	*temp;
 
 	if (*objects == NULL)
 		(*objects) = object;
@@ -48,10 +49,10 @@ void	add_object(t_object **objects, t_object *object)
 
 void	free_objects(t_object **objects)
 {
-	t_object *temp;
+	t_object	*temp;
 
 	if (objects == NULL || *objects == NULL)
-		return;
+		return ;
 	temp = *objects;
 	while (temp->next != NULL)
 	{
@@ -64,4 +65,3 @@ void	free_objects(t_object **objects)
 		free(temp->data);
 	free(temp);
 }
-

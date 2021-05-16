@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:01:26 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 19:59:47 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 17:44:59 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,30 @@ long long	token_to_num(const char *json, t_jsmntok tkn)
 	return (result);
 }
 
-t_vec3		token_to_vec3(char const *json, t_jsmntok **t)
+t_vec3	token_to_vec3(char const *json, t_jsmntok **t)
 {
 	if ((*t)->type != JSMN_ARRAY)
 		terminate("Expected array");
 	if (((*t)++)->size != 3)
 		terminate("Expected vector");
 	return (vec3(token_to_double(json, *((*t)++)),
-		token_to_double(json, *((*t)++)),
-		token_to_double(json, **t)));
+			token_to_double(json, *((*t)++)),
+			token_to_double(json, **t)));
 }
 
-t_vec3		token_to_color(char const *json, t_jsmntok **t)
+t_vec3	token_to_color(char const *json, t_jsmntok **t)
 {
-	int r;
-	int g;
-	int b;
+	int	r;
+	int	g;
+	int	b;
 
 	if ((*t)->type != JSMN_ARRAY)
 		terminate("Expected array");
 	if (((*t)++)->size != 3)
 		terminate("Expected vector");
 	r = (int)token_to_double(json, *((*t)++));
-	g =	(int)token_to_double(json, *((*t)++));
-	b =	(int)token_to_double(json, **t);
+	g = (int)token_to_double(json, *((*t)++));
+	b = (int)token_to_double(json, **t);
 	if (r > 255 || r < 0 || g > 255 || g < 0 || b > 255 || b < 0)
 		terminate("Invalid RGB set interval");
 	return (vec3(r, g, b));

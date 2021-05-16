@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:07:57 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/07 12:51:33 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 17:46:49 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,22 @@ void	terminate_sdl(t_sdl *sdl)
 	}
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int			fd;
 	char		*json;
 	t_scene		*scene;
 	t_sdl		*sdl;
 
+	fd = open(argv[1], O_RDONLY);
+	json = read_all_text(fd);
 	if (argc != 2)
 		terminate(ERR_OPEN);
 	if (is_file_format(argv[1], JSON_EXTENSION))
 		terminate(ERR_FORMAT);
-	if ((fd = open(argv[1], O_RDONLY)) <= 0)
+	if (fd <= 0)
 		terminate(ERR_READ);
-	if ((json = read_all_text(fd)) == NULL)
+	if (json == NULL)
 		terminate(ERR_EMPTY_FILE);
 	scene = init_scene();
 	parse_json(json, &scene);
@@ -50,4 +52,3 @@ int		main(int argc, char **argv)
 	terminate_sdl(sdl);
 	free_scene(&scene);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 17:08:48 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 23:29:00 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:38:57 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include "scene.h"
 # include <SDL.h>
 
-typedef struct		s_sdl
+typedef struct s_sdl
 {
 	SDL_Window		*win;
 	SDL_Renderer	*ren;
 }					t_sdl;
 
-typedef struct	s_view
+typedef struct s_view
 {
 	float	width;
 	float	height;

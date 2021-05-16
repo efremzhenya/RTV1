@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:50:58 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/08 20:01:36 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/16 18:22:43 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,21 @@
 t_vec3	get_normal_cylinder(t_vec3 ray_dir, float closest_dist,
 	struct s_object *obj, t_vec3 cam_origin)
 {
-	t_cylinder_data *data;
-	float m;
-	t_vec3 vecs[3];
+	t_cylinder_data	*data;
+	float			m;
+	t_vec3			vecs[3];
 
 	data = obj->data;
 	data->normal = vec3_normalize(data->normal);
-
-	m = vec3_dot_product(ray_dir, vec3_mult_value(data->normal, closest_dist)) +
-	 vec3_dot_product(vec3_sub(cam_origin, obj->origin), data->normal);
+	m = vec3_dot(ray_dir, vec3_mult_value(data->normal, closest_dist))
+		+ vec3_dot(vec3_sub(cam_origin, obj->origin), data->normal);
 	vecs[0] = vec3_plus(vec3_mult_value(ray_dir, closest_dist), cam_origin);
 	vecs[1] = vec3_sub(vecs[0], obj->origin);
 	vecs[2] = vec3_mult_value(data->normal, m);
 	return (vec3_normalize(vec3_sub(vecs[1], vecs[2])));
 }
 
-void		parse_cylinder(char const *json, t_jsmntok **tkn, t_scene **scene,
+void	parse_cylinder(char const *json, t_jsmntok **tkn, t_scene **scene,
 	int size)
 {
 	t_object		*object;
@@ -60,7 +59,7 @@ void		parse_cylinder(char const *json, t_jsmntok **tkn, t_scene **scene,
 		else if (json_eq(json, **tkn, "radius"))
 			cylinder_data->radius = token_to_double(json, *(++(*tkn)));
 		else if (json_eq(json, **tkn, "specular"))
-			object->specular =  token_to_double(json, *(++(*tkn)));
+			object->specular = token_to_double(json, *(++(*tkn)));
 		else
 			terminate("Unexpected key in cylinder");
 		(*tkn)++;
@@ -68,23 +67,24 @@ void		parse_cylinder(char const *json, t_jsmntok **tkn, t_scene **scene,
 	add_object(&(*scene)->objects, object);
 }
 
-float		intersect_cylinder(t_vec3 cam_origin, t_vec3 ray_dir, t_object *cylinder)
+float	intersect_cylinder(t_vec3 cam_origin,
+	t_vec3 ray_dir, t_object *cylinder)
 {
-	t_vec3	cyl_cam;
-	t_vec3	direction;
-	t_cylinder_data *data;
-	t_quadric_eq quadric;
+	t_vec3			cyl_cam;
+	t_vec3			direction;
+	t_cylinder_data	*data;
+	t_quadric_eq	quadric;
 
 	data = cylinder->data;
 	cyl_cam = vec3_sub(cam_origin, cylinder->origin);
 	direction = vec3_normalize(data->normal);
-	quadric.a = vec3_dot_product(ray_dir, ray_dir)
-		- pow(vec3_dot_product(ray_dir, direction), 2);
-	quadric.b = 2 * (vec3_dot_product(ray_dir, cyl_cam)
-		- vec3_dot_product(ray_dir, direction)
-		* vec3_dot_product(cyl_cam, direction));
-	quadric.c = vec3_dot_product(cyl_cam, cyl_cam)
-		- pow(vec3_dot_product(cyl_cam, direction), 2) - pow(data->radius, 2);
+	quadric.a = vec3_dot(ray_dir, ray_dir)
+		- pow(vec3_dot(ray_dir, direction), 2);
+	quadric.b = 2 * (vec3_dot(ray_dir, cyl_cam)
+			- vec3_dot(ray_dir, direction)
+			* vec3_dot(cyl_cam, direction));
+	quadric.c = vec3_dot(cyl_cam, cyl_cam)
+		- pow(vec3_dot(cyl_cam, direction), 2) - pow(data->radius, 2);
 	quadric.discr = quadric.b * quadric.b - 4 * quadric.a * quadric.c;
 	if (quadric.discr < 0)
 		return (0);
