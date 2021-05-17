@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 17:08:48 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 19:15:50 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 21:09:58 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			is_file_format(char *file, char *format);
 t_sdl		*init_sdl(int width, int height);
 void		main_loop(t_sdl *sdl, t_scene *scene);
 t_vec3		*init_frame(t_vec3 **frame, int height, int width);
-t_vec3		*get_frame(t_scene *scene);
+t_vec3		*get_frame(t_scene *scene, int y);
 t_vec3		ray_trace(t_ray ray, t_scene *scene);
 t_view		*init_view(float width, float height, float fov);
 

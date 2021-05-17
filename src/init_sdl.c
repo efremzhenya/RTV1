@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_sdl.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 18:42:12 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 18:30:37 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 21:09:45 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//gcc main.c -lm `SDL/bin/sdl2-config --cflags` -I SDL/include/SDL2 -o main 
+//gcc main.c -lm `SDL/bin/sdl2-config --cflags` -I SDL/include/SDL2 -o main
 //-lm `SDL/bin/sdl2-config --libs`
 
 #include "rtv1.h"
@@ -66,7 +66,7 @@ void	main_loop(t_sdl *sdl, t_scene *scene)
 
 	frame = NULL;
 	if (scene != NULL)
-		frame = get_frame(scene);
+		frame = get_frame(scene, 0);
 	running = 1;
 	draw(sdl, frame, scene->height, scene->width);
 	while (running)

@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ray_trace.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 20:14:38 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 19:16:00 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 21:10:11 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_vec3	*get_frame(t_scene *scene)
+t_vec3	*get_frame(t_scene *scene, int y)
 {
 	int			x;
-	int			y;
 	t_vec3		*frame;
 	t_view		*view;
 	t_ray		ray;
@@ -24,7 +23,6 @@ t_vec3	*get_frame(t_scene *scene)
 	transform_scene(scene);
 	view = init_view(scene->width, scene->height, scene->camera->fov);
 	ray.origin.z = -1;
-	y = 0;
 	while (y < scene->height)
 	{
 		ray.origin.y = ((scene->height / 2.0) - y) * view->y;
@@ -38,6 +36,7 @@ t_vec3	*get_frame(t_scene *scene)
 		}
 		y++;
 	}
+	free(view);
 	return (frame);
 }
 
