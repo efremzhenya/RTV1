@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:53:33 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 18:23:26 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 20:20:25 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,16 @@ void	parse_plane(char const *json, t_jsmntok **tkn, t_scene **scene,
 	object->get_normal = get_normal_plane;
 	while (--size)
 	{
-		if (json_eq(json, **tkn, "coordinates"))
+		if (!parse_obj(json, tkn, &object))
 		{
-			++(*tkn);
-			object->origin = token_to_vec3(json, tkn);
+			if (json_eq(json, **tkn, "normal"))
+			{
+				++(*tkn);
+				plane_data->normal = token_to_vec3(json, tkn);
+			}
+			else
+				terminate("Unexpected key on plane");
 		}
-		else if (json_eq(json, **tkn, "normal"))
-		{
-			++(*tkn);
-			plane_data->normal = token_to_vec3(json, tkn);
-		}
-		else if (json_eq(json, **tkn, "color"))
-		{
-			++(*tkn);
-			object->color = token_to_color(json, tkn);
-		}
-		else if (json_eq(json, **tkn, "specular"))
-			object->specular = token_to_double(json, *(++(*tkn)));
-		else
-			terminate("Unexpected key on plane");
 		(*tkn)++;
 	}
 	add_object(&(*scene)->objects, object);

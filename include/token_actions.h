@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 09:29:30 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 19:14:01 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 20:12:59 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int						json_eq(const char *json, t_jsmntok token,
 							const char *s);
 int						is_file_format(char *file, char *format);
 char					*read_all_text(int fd);
-void					parse_obj(char const *json, t_jsmntok **tkn,
-							t_object	*object);
+int						parse_obj(char const *json, t_jsmntok **tkn,
+							t_object	**object);
 void					objects_parse_wrapper(char const *json, t_jsmntok **t,
 							t_scene **scene);
 void					object_parse_switch(char const *json, t_jsmntok **t,

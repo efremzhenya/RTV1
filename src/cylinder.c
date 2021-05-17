@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:50:58 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 18:22:43 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 20:19:27 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,18 @@ void	parse_cylinder(char const *json, t_jsmntok **tkn, t_scene **scene,
 	object->get_normal = get_normal_cylinder;
 	while (--size)
 	{
-		if (json_eq(json, **tkn, "coordinates"))
+		if (!parse_obj(json, tkn, &object))
 		{
-			++(*tkn);
-			object->origin = token_to_vec3(json, tkn);
+			if (json_eq(json, **tkn, "normal"))
+			{
+				++(*tkn);
+				cylinder_data->normal = token_to_vec3(json, tkn);
+			}
+			else if (json_eq(json, **tkn, "radius"))
+				cylinder_data->radius = token_to_double(json, *(++(*tkn)));
+			else
+				terminate("Unexpected key in cylinder");
 		}
-		else if (json_eq(json, **tkn, "normal"))
-		{
-			++(*tkn);
-			cylinder_data->normal = token_to_vec3(json, tkn);
-		}
-		else if (json_eq(json, **tkn, "color"))
-		{
-			++(*tkn);
-			object->color = token_to_color(json, tkn);
-		}
-		else if (json_eq(json, **tkn, "radius"))
-			cylinder_data->radius = token_to_double(json, *(++(*tkn)));
-		else if (json_eq(json, **tkn, "specular"))
-			object->specular = token_to_double(json, *(++(*tkn)));
-		else
-			terminate("Unexpected key in cylinder");
 		(*tkn)++;
 	}
 	add_object(&(*scene)->objects, object);

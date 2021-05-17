@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:46:15 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 18:23:40 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 20:21:27 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,13 @@ void	parse_sphere(char const *json, t_jsmntok **tkn, t_scene **scene,
 	object = new_object(sphere_data, OBJ_SPHERE, intersect_sphere);
 	while (--size)
 	{
-		if (json_eq(json, **tkn, "coordinates"))
+		if (!parse_obj(json, tkn, &object))
 		{
-			++(*tkn);
-			object->origin = token_to_vec3(json, tkn);
+			if (json_eq(json, **tkn, "radius"))
+				sphere_data->radius = token_to_double(json, *(++(*tkn)));
+			else
+				terminate("Unexpected key on sphere");
 		}
-		else if (json_eq(json, **tkn, "color"))
-		{
-			++(*tkn);
-			object->color = token_to_color(json, tkn);
-		}
-		else if (json_eq(json, **tkn, "radius"))
-			sphere_data->radius = token_to_double(json, *(++(*tkn)));
-		else if (json_eq(json, **tkn, "specular"))
-			object->specular = token_to_double(json, *(++(*tkn)));
-		else
-			terminate("Unexpected key on sphere");
 		(*tkn)++;
 	}
 	object->get_normal = get_normal_sphere;

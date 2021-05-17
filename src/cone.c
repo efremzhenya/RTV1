@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:16:06 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 19:35:34 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 20:16:30 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,18 @@ void	parse_cone(char const *json, t_jsmntok **tkn, t_scene **scene,
 	object->get_normal = get_normal_cone;
 	while (--size)
 	{
-		parse_obj(json, tkn, object);
-		if (json_eq(json, **tkn, "normal"))
+		if (!parse_obj(json, tkn, &object))
 		{
-			++(*tkn);
-			cone_data->normal = token_to_vec3(json, tkn);
+			if (json_eq(json, **tkn, "normal"))
+			{
+				++(*tkn);
+				cone_data->normal = token_to_vec3(json, tkn);
+			}
+			else if (json_eq(json, **tkn, "angle"))
+				cone_data->angle = token_to_double(json, *(++(*tkn)));
+			else
+				terminate("Unexpected key in cone");
 		}
-		else if (json_eq(json, **tkn, "angle"))
-			cone_data->angle = token_to_double(json, *(++(*tkn)));
-		else
-			terminate("Unexpected key in cone");
 		(*tkn)++;
 	}
 	add_object(&(*scene)->objects, object);
