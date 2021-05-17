@@ -23,7 +23,7 @@
 	  },
 	  {
 		"type": "omnilight",
-		"coordinates": [-4, 10, -4],
+		"coordinates": [20, 10, 10],
 		"color": [10, 0, 255],
 		"brightness": 1
 	  },
@@ -40,6 +40,14 @@
 		"normal": [0.8, 0.3, 0],
 		"radius": 2,
 		"color": [100, 255, 255],
+		"specular" : 10
+	  },
+	  {
+		"type": "cone",
+		"coordinates": [0, 0, 5],
+		"angle": 30,
+		"normal": [-10.0, 7.0, 0.0],
+		"color": [78, 52, 208],
 		"specular" : 10
 	  },
 	  {
