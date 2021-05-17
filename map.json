@@ -44,8 +44,8 @@
 	  },
 	  {
 		"type": "camera",
-		"lookat": [0, 0, 100],
-		"direction": [0.0, 0.0, -1.0],
+		"coordinates": [0, 0, 100],
+		"lookat": [0.0, 0.0, -1.0],
 		"fov": 60
 	  }
 	],

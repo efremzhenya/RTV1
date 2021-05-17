@@ -6,11 +6,19 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 20:14:38 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 18:39:54 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 18:25:01 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+
+t_vec3	*init_frame(t_vec3 **frame, int height, int width)
+{
+	*frame = (t_vec3 *)malloc(sizeof(t_vec3) * height * width);
+	if (!*frame)
+		terminate(ERR_MALLOC);
+	return (*frame);
+}
 
 t_vec3	*get_frame(t_scene *scene)
 {
@@ -20,9 +28,7 @@ t_vec3	*get_frame(t_scene *scene)
 	t_view		*view;
 	t_ray		ray;
 
-	frame = (t_vec3 *)malloc(sizeof(t_vec3) * scene->height * scene->width);
-	if (!frame)
-		terminate(ERR_MALLOC);
+	frame = init_frame(&frame, scene->height, scene->width);
 	transform_scene(scene);
 	view = init_view(scene->width, scene->height, scene->camera->fov);
 	ray.origin.z = -1;

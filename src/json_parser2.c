@@ -21,7 +21,10 @@ char	*read_all_text(int fd)
 	json = NULL;
 	while (get_next_line(fd, &line))
 	{
-		result = ft_strjoin(json ? json : "", line);
+		if (json)
+			result = ft_strjoin(json, line);
+		else
+			result = ft_strjoin("", line);
 		free(line);
 		if (json)
 			free(json);
