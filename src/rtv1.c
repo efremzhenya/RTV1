@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:07:57 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 17:46:49 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 21:37:23 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ int	main(int argc, char **argv)
 	t_scene		*scene;
 	t_sdl		*sdl;
 
-	fd = open(argv[1], O_RDONLY);
-	json = read_all_text(fd);
 	if (argc != 2)
 		terminate(ERR_OPEN);
 	if (is_file_format(argv[1], JSON_EXTENSION))
 		terminate(ERR_FORMAT);
+	fd = open(argv[1], O_RDONLY);
 	if (fd <= 0)
 		terminate(ERR_READ);
+	json = read_all_text(fd);
 	if (json == NULL)
 		terminate(ERR_EMPTY_FILE);
 	scene = init_scene();
