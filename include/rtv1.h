@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 17:08:48 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 15:38:57 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 19:15:50 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char		*read_all_text(int fd);
 int			is_file_format(char *file, char *format);
 t_sdl		*init_sdl(int width, int height);
 void		main_loop(t_sdl *sdl, t_scene *scene);
+t_vec3		*init_frame(t_vec3 **frame, int height, int width);
 t_vec3		*get_frame(t_scene *scene);
 t_vec3		ray_trace(t_ray ray, t_scene *scene);
 t_view		*init_view(float width, float height, float fov);

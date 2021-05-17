@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 10:18:29 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 17:45:24 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 19:17:03 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,12 @@ t_scene	*init_scene(void)
 	scene->camera = NULL;
 	scene->light = NULL;
 	return (scene);
+}
+
+t_vec3	*init_frame(t_vec3 **frame, int height, int width)
+{
+	*frame = (t_vec3 *)malloc(sizeof(t_vec3) * height * width);
+	if (!*frame)
+		terminate(ERR_MALLOC);
+	return (*frame);
 }

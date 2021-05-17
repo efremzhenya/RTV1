@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 18:24:41 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 18:23:49 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 19:12:50 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ float			vec3_dot(t_vec3 vec1, t_vec3 vec2);
 t_vec3			vec3_cross_product(t_vec3 vec1, t_vec3 vec2);
 t_vec3			vec3_mult_value(t_vec3 vec, float value);
 t_vec3			vec3_devide_value(t_vec3 vec, float value);
-t_vec3			mat44f_mult_vec3f(t_vec3 vec, t_mat44f mat);
+t_vec3			mat_mult_vec(t_vec3 vec, t_mat44f mat);
 t_vec3			up_direction(t_vec3 forward);
 t_mat44f		new_matrix44f(void);
 t_mat44f		rotation_matrix(const t_vec3 from, const t_vec3 to);

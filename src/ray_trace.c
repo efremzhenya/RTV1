@@ -6,19 +6,11 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/24 20:14:38 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 18:25:01 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 19:16:00 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-t_vec3	*init_frame(t_vec3 **frame, int height, int width)
-{
-	*frame = (t_vec3 *)malloc(sizeof(t_vec3) * height * width);
-	if (!*frame)
-		terminate(ERR_MALLOC);
-	return (*frame);
-}
 
 t_vec3	*get_frame(t_scene *scene)
 {
@@ -91,12 +83,38 @@ t_view	*init_view(float width, float height, float fov)
 	return (view);
 }
 
+void	transform_obj(t_object **obj, t_scene **scene)
+{
+	t_cylinder_data	*cyl;
+	t_cone_data		*cone;
+	t_plane_data	*plane;
+
+	if ((*obj)->type == OBJ_PLANE)
+	{
+		plane = (*obj)->data;
+		(*obj)->origin = mat_mult_vec((*obj)->origin,
+				(*scene)->camera->look_at);
+		plane->normal = mat_mult_vec(plane->normal, (*scene)->camera->rotation);
+	}
+	else if ((*obj)->type == OBJ_CYLINDER)
+	{
+		cyl = (*obj)->data;
+		(*obj)->origin = mat_mult_vec((*obj)->origin,
+				(*scene)->camera->look_at);
+		cyl->normal = mat_mult_vec(cyl->normal, (*scene)->camera->rotation);
+	}
+	else if ((*obj)->type == OBJ_CONE)
+	{
+		cone = (*obj)->data;
+		(*obj)->origin = mat_mult_vec((*obj)->origin,
+				(*scene)->camera->look_at);
+		cone->normal = mat_mult_vec(cone->normal, (*scene)->camera->rotation);
+	}
+}
+
 void	transform_scene(t_scene *scene)
 {
 	t_object		*obj;
-	t_cylinder_data	*cyl_data;
-	t_cone_data		*cone_data;
-	t_plane_data	*plane_data;
 
 	obj = scene->objects;
 	scene->camera->rotation = rotation_matrix(scene->camera->origin,
@@ -107,36 +125,14 @@ void	transform_scene(t_scene *scene)
 	while (obj)
 	{
 		if (obj->type == OBJ_SPHERE)
-			obj->origin = mat44f_mult_vec3f(obj->origin,
+			obj->origin = mat_mult_vec(obj->origin,
 					scene->camera->look_at);
-		else if (obj->type == OBJ_PLANE)
-		{
-			plane_data = obj->data;
-			obj->origin = mat44f_mult_vec3f(obj->origin,
-					scene->camera->look_at);
-			plane_data->normal = mat44f_mult_vec3f(plane_data->normal,
-					scene->camera->rotation);
-		}
-		else if (obj->type == OBJ_CYLINDER)
-		{
-			cyl_data = obj->data;
-			obj->origin = mat44f_mult_vec3f(obj->origin,
-					scene->camera->look_at);
-			cyl_data->normal = mat44f_mult_vec3f(cyl_data->normal,
-					scene->camera->rotation);
-		}
-		else if (obj->type == OBJ_CONE)
-		{
-			cone_data = obj->data;
-			obj->origin = mat44f_mult_vec3f(obj->origin,
-					scene->camera->look_at);
-			cone_data->normal = mat44f_mult_vec3f(cone_data->normal,
-					scene->camera->rotation);
-		}
+		else
+			transform_obj(&obj, &scene);
 		obj = obj->next;
 	}
-	scene->light->center = mat44f_mult_vec3f(scene->light->center,
+	scene->light->center = mat_mult_vec(scene->light->center,
 			scene->camera->look_at);
-	scene->camera->origin = mat44f_mult_vec3f(scene->camera->origin,
+	scene->camera->origin = mat_mult_vec(scene->camera->origin,
 			scene->camera->look_at);
 }

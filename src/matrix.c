@@ -6,7 +6,7 @@
 /*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 02:12:55 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 17:42:02 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 19:09:36 by mellie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_mat44f	new_matrix44f(void)
 	return (matrix);
 }
 
-t_vec3	mat44f_mult_vec3f(t_vec3 vec, t_mat44f mat)
+t_vec3	mat_mult_vec(t_vec3 vec, t_mat44f mat)
 {
 	int		i;
 	float	vec4[4];
