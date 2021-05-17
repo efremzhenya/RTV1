@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 19:38:04 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 19:38:05 by lseema           ###   ########.fr       */
+/*   Created: 2020/12/19 15:06:59 by jpasty            #+#    #+#             */
+/*   Updated: 2021/05/17 19:44:32 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	cap(int n, int minus, char *str)
+static int	cap(int n, int minus)
 {
 	int	len;
 
@@ -23,9 +23,14 @@ static int	cap(int n, int minus, char *str)
 		n /= 10;
 		len++;
 	}
-	len += minus;
-	str = ft_strnew(len);
-	return (len);
+	return (minus + len);
+}
+
+static int	itoa_helper(int n)
+{
+	if (n < 0)
+		return (1);
+	return (0);
 }
 
 char	*ft_itoa(int n)
@@ -35,10 +40,9 @@ char	*ft_itoa(int n)
 	int		znak;
 	int		dig;
 
-	znak = 0;
-	if (n < 0)
-		znak = 1;
-	len = cap(n, znak, &str);
+	znak = itoa_helper(n);
+	len = cap(n, znak);
+	str = ft_strnew(len);
 	if (str)
 	{
 		str[len--] = '\0';
