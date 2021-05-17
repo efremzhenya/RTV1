@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpasty <jpasty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 15:14:50 by jpasty            #+#    #+#             */
-/*   Updated: 2020/12/19 15:14:50 by jpasty           ###   ########.fr       */
+/*   Created: 2021/05/17 19:33:56 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:33:57 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	ft_num_words(char const *str, char c)
 {
-	int i;
-	int words;
+	int	i;
+	int	words;
 
 	words = 0;
 	i = 0;
@@ -49,7 +49,8 @@ static int	ft_splitstr(char **arr, const char *s, char d, size_t len)
 			wlen++;
 			j++;
 		}
-		if (!(arr[count] = ft_strsub(&s[j - wlen], 0, wlen)))
+		arr[count] = ft_strsub(&s[j - wlen], 0, wlen);
+		if (!(arr[count]))
 			return (0);
 		count++;
 	}
@@ -57,7 +58,7 @@ static int	ft_splitstr(char **arr, const char *s, char d, size_t len)
 	return (1);
 }
 
-char		**ft_strsplit(char const *str, char c)
+char	**ft_strsplit(char const *str, char c)
 {
 	size_t	l;
 	char	**arr;
@@ -65,7 +66,8 @@ char		**ft_strsplit(char const *str, char c)
 	if (!str)
 		return (NULL);
 	l = ft_num_words(str, c);
-	if (!(arr = ((char **)ft_memalloc(sizeof(char *) * (l + 1)))))
+	arr = ((char **)ft_memalloc(sizeof(char *) * (l + 1)));
+	if (!(arr))
 		return (NULL);
 	if (ft_splitstr(arr, str, c, l))
 		return (arr);

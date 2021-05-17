@@ -3,41 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpasty <jpasty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 15:06:59 by jpasty            #+#    #+#             */
-/*   Updated: 2020/12/19 15:06:59 by jpasty           ###   ########.fr       */
+/*   Created: 2021/05/17 19:38:04 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:38:05 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		cap(int n, int minus)
+static int	cap(int n, int minus, char *str)
 {
-	int len;
+	int	len;
 
 	len = 1;
-	while ((n /= 10))
+	n /= 10;
+	while (n)
+	{
+		n /= 10;
 		len++;
-	return (minus + len);
+	}
+	len += minus;
+	str = ft_strnew(len);
+	return (len);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		len;
 	int		znak;
 	int		dig;
 
-	znak = (n < 0) ? 1 : 0;
-	len = cap(n, znak);
-	if ((str = ft_strnew(len)))
+	znak = 0;
+	if (n < 0)
+		znak = 1;
+	len = cap(n, znak, &str);
+	if (str)
 	{
 		str[len--] = '\0';
 		while (len >= znak)
 		{
 			dig = n % 10;
-			str[len--] = (dig < 0 ? dig * -1 : dig) + '0';
+			if (dig < 0)
+				str[len--] = dig * -1 + '0';
+			else
+				str[len--] = dig + '0';
 			n /= 10;
 		}
 		if (znak)

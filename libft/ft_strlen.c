@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 17:37:41 by lseema            #+#    #+#             */
-/*   Updated: 2021/01/02 17:37:44 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/17 19:23:36 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t count;
+	size_t	count;
 
 	count = 0;
 	while (s[count] != '\0')

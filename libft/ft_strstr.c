@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpasty <jpasty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 15:14:59 by jpasty            #+#    #+#             */
-/*   Updated: 2020/12/19 15:14:59 by jpasty           ###   ########.fr       */
+/*   Created: 2021/05/17 19:33:47 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:33:49 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 	j = 0;
 	i = 0;
 	if (needle[0] == '\0')
-		return ((char*)&haystack[0]);
+		return ((char *)&haystack[0]);
 	pos = -1;
 	while (haystack[i] != '\0' && needle[j] != '\0')
 	{
@@ -33,7 +33,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 			j++;
 		}
 		if (needle[j] == '\0')
-			return ((char*)&haystack[pos]);
+			return ((char *)&haystack[pos]);
 		i = (i - j) + 1;
 		j = 0;
 		pos = -1;
