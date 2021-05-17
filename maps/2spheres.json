@@ -1,0 +1,34 @@
+{
+	"objects": [
+	  {
+		"type": "sphere",
+		"coordinates": [0.0, 0.0, 0.0],
+		"radius": 10,
+		"color": [78, 52, 0],
+		"specular" : 10
+	  },
+	  {
+		"type": "sphere",
+		"coordinates": [0.0, 0.0, 30.0],
+		"radius": 2,
+		"color": [108, 30, 40],
+		"specular" : 10
+	  },
+	  {
+		"type": "omnilight",
+		"coordinates": [-30, 30, 50],
+		"color": [10, 0, 255],
+		"brightness": 1
+	  },
+	  {
+		"type": "camera",
+		"coordinates": [0, 0, 150],
+		"lookat": [0.0, 0.0, -1.0],
+		"fov": 60
+	  }
+	],
+	"resolution": {
+		"height": 1800,
+		"width": 2560
+	}
+}

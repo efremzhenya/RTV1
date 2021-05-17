@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 10:18:29 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 19:17:03 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:25:55 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_scene	*init_scene(void)
 	scene->objects = NULL;
 	scene->camera = NULL;
 	scene->light = NULL;
+	scene->height = 0;
+	scene->width = 0;
 	return (scene);
 }
 

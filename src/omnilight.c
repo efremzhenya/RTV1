@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   omnilight.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:07:18 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 17:42:24 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 23:26:23 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,6 @@ void	parse_omnilight(char const *json, t_jsmntok **tkn, t_scene **scene,
 			terminate("Unexpected key in omnilight");
 		(*tkn)++;
 	}
+	if ((*scene)->light->brightness > 1 || (*scene)->light->brightness < 0)
+		terminate("Invalid brightness");
 }

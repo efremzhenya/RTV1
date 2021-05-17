@@ -4,7 +4,7 @@
 		"type": "omnilight",
 		"coordinates": [0, 0, 0],
 		"color": [10, 0, 255],
-		"brightness": 1
+		"brightness": -20
 	  },
 	  {
 		"type": "sphere",
