@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_actions.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 09:29:30 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 20:12:59 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 20:38:44 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define TOKEN_ACTIONS_H
 # include "scene.h"
 # include "geometry.h"
-# include "../external_libs/jsmn/jsmn.h"
+# include "jsmn.h"
 
 int						json_eq(const char *json, t_jsmntok token,
 							const char *s);

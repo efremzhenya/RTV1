@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mellie <mellie@student.42.fr>              +#+  +:+       +#+         #
+#    By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/02 13:17:58 by lseema            #+#    #+#              #
-#    Updated: 2021/05/16 18:35:38 by mellie           ###   ########.fr        #
+#    Updated: 2021/05/17 20:45:30 by lseema           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC			:= gcc
-FLAGS		:= -Wall -Wextra -Werror -g
-MAIN		:= rtv1
+FLAGS		:= -Wall -Wextra -Werror
+RTV1		:= rtv1
 
 DIR_SRC		:= src/
 DIR_INC		:= include/
@@ -50,15 +50,13 @@ PATH_LIBFT	:= $(addprefix $(DIR_LIBFT), $(LIBFT))
 PATH_JSMN	:= external_libs/jsmn/jsmn.a
 MAKE_LIBFT := make -C $(DIR_LIBFT)
 
-#rebuild dependencies
 vpath %.c $(DIR_SRC)
 vpath %.h $(DIR_INC)
 vpath %.o $(DIR_OBJ)
 
-#all: libft_target sdl_target $(MAIN)
-all: libft_target $(MAIN)
+all: libft_target sdl_target $(RTV1)
 
-$(MAIN): $(OBJS)
+$(RTV1): $(OBJS)
 	$(CC) $(FLAGS) -lm `external_libs/SDL/bin/sdl2-config --cflags` $(addprefix $(DIR_OBJ), $(OBJS)) $(PATH_LIBFT) $(PATH_JSMN) -o $@ `external_libs/SDL/bin/sdl2-config --libs`
 	@echo "rtv1 builded"
 
