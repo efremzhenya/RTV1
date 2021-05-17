@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:50:58 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 20:19:27 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:47:07 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	parse_cylinder(char const *json, t_jsmntok **tkn, t_scene **scene,
 		}
 		(*tkn)++;
 	}
+	if (cylinder_data->radius < 1)
+		terminate("Invalid radius");
 	add_object(&(*scene)->objects, object);
 }
 

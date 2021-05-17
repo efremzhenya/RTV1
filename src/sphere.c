@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 14:46:15 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 20:21:27 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:47:45 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	parse_sphere(char const *json, t_jsmntok **tkn, t_scene **scene,
 		(*tkn)++;
 	}
 	object->get_normal = get_normal_sphere;
+	if (sphere_data->radius < 1)
+		terminate("Invalid radius");
 	add_object(&(*scene)->objects, object);
 }
 
