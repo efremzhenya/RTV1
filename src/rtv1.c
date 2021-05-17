@@ -6,7 +6,7 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:07:57 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/17 21:37:23 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:25:33 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ int	main(int argc, char **argv)
 	scene = init_scene();
 	parse_json(json, &scene);
 	free(json);
+	if (scene->camera == NULL || scene->light == NULL \
+		|| scene->objects == NULL)
+		terminate("Invalid scene, or objects not found");
 	sdl = init_sdl(scene->width, scene->height);
 	main_loop(sdl, scene);
 	terminate_sdl(sdl);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   json_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 18:44:31 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 18:34:59 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:24:47 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ void	parse_screen(char const *json, t_jsmntok **tkn, t_scene **scene)
 			terminate("Unexpected key");
 		(*tkn)++;
 	}
+	if ((*scene)->height < 400 || (*scene)->width < 400 || \
+		(*scene)->height > 2800 || (*scene)->width > 2800)
+		terminate("Invalid resolution");
 }
 
 void	parse_json(char const *json, t_scene **scene)

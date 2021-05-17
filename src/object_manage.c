@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_manage.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 08:00:32 by lseema            #+#    #+#             */
-/*   Updated: 2021/05/16 17:55:40 by mellie           ###   ########.fr       */
+/*   Updated: 2021/05/17 22:09:35 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ t_object	*new_object(void *data, t_object_type type,
 	object = (t_object *)malloc(sizeof(t_object));
 	if (!(object))
 		terminate("Allocate error");
+	object->origin = vec3(0, 0, 0);
+	object->color = vec3(0, 0, 0);
+	object->specular = 0;
 	object->data = data;
 	object->type = type;
 	object->intersect = intersect;
