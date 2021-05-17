@@ -6,13 +6,13 @@
 /*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 13:08:03 by lseema            #+#    #+#             */
-/*   Updated: 2021/01/02 13:08:05 by lseema           ###   ########.fr       */
+/*   Updated: 2021/05/17 19:32:58 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_new_line(char **str, char **line, int fd, int ret)
+int	ft_new_line(char **str, char **line, int fd, int ret)
 {
 	char	*tmp;
 	ssize_t	len;
@@ -39,7 +39,7 @@ int		ft_new_line(char **str, char **line, int fd, int ret)
 	return (1);
 }
 
-int		get_next_line(const int fd, char **line)
+int	get_next_line(const int fd, char **line)
 {
 	static char	*str[MAX_CHAR];
 	char		buf[BUFF_SIZE + 1];
@@ -48,7 +48,8 @@ int		get_next_line(const int fd, char **line)
 
 	if (fd < 0 || line == NULL)
 		return (-1);
-	while ((offset = read(fd, buf, BUFF_SIZE)) > 0)
+	offset = read(fd, buf, BUFF_SIZE);
+	while (offset > 0)
 	{
 		buf[offset] = '\0';
 		if (str[fd] == NULL)

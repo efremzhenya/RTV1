@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpasty <jpasty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 15:13:59 by jpasty            #+#    #+#             */
-/*   Updated: 2020/12/19 15:13:59 by jpasty           ###   ########.fr       */
+/*   Created: 2021/05/17 19:34:49 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:34:50 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strmap(char const *s, char (*f)(char))
 		return (NULL);
 	while (s[i] != '\0')
 		i++;
-	if (!(new = (char*)malloc(sizeof(char) * i + 1)))
+	new = (char *)malloc(sizeof(char) * i + 1);
+	if (!(new))
 		return (NULL);
 	i = 0;
 	while (s[i])

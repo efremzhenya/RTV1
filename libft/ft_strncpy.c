@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mellie <mellie@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 15:14:22 by jpasty            #+#    #+#             */
-/*   Updated: 2021/01/14 14:49:58 by mellie           ###   ########.fr       */
+/*   Created: 2021/05/17 19:34:26 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:34:27 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while ((i < len) && (src[i] != '\0'))

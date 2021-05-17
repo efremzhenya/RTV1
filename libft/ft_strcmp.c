@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpasty <jpasty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 15:13:18 by jpasty            #+#    #+#             */
-/*   Updated: 2020/12/19 15:13:18 by jpasty           ###   ########.fr       */
+/*   Created: 2021/05/17 19:35:44 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:35:45 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s1[i] == s2[i])

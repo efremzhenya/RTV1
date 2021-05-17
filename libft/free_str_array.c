@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   free_str_array.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpasty <jpasty@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/12 19:20:54 by jpasty            #+#    #+#             */
-/*   Updated: 2020/12/12 19:20:54 by jpasty           ###   ########.fr       */
+/*   Created: 2021/05/17 19:38:39 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:38:40 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				free_str_arr(char **temp)
+int	free_str_arr(char **temp)
 {
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	while (temp[i])

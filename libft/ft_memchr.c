@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpasty <jpasty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 15:09:22 by jpasty            #+#    #+#             */
-/*   Updated: 2020/12/19 15:09:22 by jpasty           ###   ########.fr       */
+/*   Created: 2021/05/17 19:37:29 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:37:29 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char *p;
-	unsigned char ch;
+	unsigned char	*p;
+	unsigned char	ch;
 
 	ch = (unsigned char)c;
 	p = (unsigned char *)s;

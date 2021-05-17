@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpasty <jpasty@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lseema <lseema@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/19 15:15:09 by jpasty            #+#    #+#             */
-/*   Updated: 2020/12/19 15:15:09 by jpasty           ###   ########.fr       */
+/*   Created: 2021/05/17 19:33:28 by lseema            #+#    #+#             */
+/*   Updated: 2021/05/17 19:33:31 by lseema           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ char	*ft_strtrim(char const *s)
 		return (NULL);
 	while ((*s == ' ') || (*s == '\n') || (*s == '\t'))
 		s++;
-	if (!(end = ft_strlen(s)))
+	end = ft_strlen(s);
+	if (!(end))
 		return (ft_strnew(0));
 	end = end - 1;
 	while (((s[end] == ' ') || (s[end] == '\n') || (s[end] == '\t')))
 		end--;
-	if (!(dst = ft_strnew(end)))
+	dst = ft_strnew(end);
+	if (!(dst))
 		return (NULL);
 	i = 0;
 	while (i <= end)
